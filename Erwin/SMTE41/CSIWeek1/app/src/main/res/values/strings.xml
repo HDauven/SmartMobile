@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">CSI Week 1</string>
+    <string name="image_name">Criminal</string>
+    <string name="criminal_name">Name</string>
+    <string name="criminal_name_value">Sjakie</string>
+    <string name="gender">Gender</string>
+    <string name="gender_value">Male</string>
+    <string name="text_age">Age</string>
+    <string name="text_age_value">31</string>
+    <string name="bounty">Bounty</string>
+    <string name="bounty_value">50.000</string>
+</resources>

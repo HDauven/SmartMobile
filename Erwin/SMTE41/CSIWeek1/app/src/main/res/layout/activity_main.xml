@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="org.csiweek1.MainActivity"
+    android:background="@android:color/black">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:contentDescription="@string/image_name"
+        android:src="@drawable/webcrime1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <TableLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="@dimen/activity_horizontal_margin"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/holo_green_light"
+                android:weightSum="2">
+
+
+
+                    <TextView
+                        android:id="@+id/text_name"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:text="@string/criminal_name"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:textColorHighlight="@android:color/primary_text_dark"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:id="@+id/text_name_value"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:text="@string/criminal_name_value"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:textColorHighlight="@android:color/primary_text_dark"
+                        android:textSize="30sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:id="@+id/text_gender"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:text="@string/gender"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:textColorHighlight="@android:color/primary_text_dark"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:id="@+id/text_gender_value"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:text="@string/gender_value"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:textColorHighlight="@android:color/primary_text_dark"
+                        android:textSize="30sp" />
+
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                    <TextView
+                        android:id="@+id/text_age"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:text="@string/text_age"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:textColorHighlight="@android:color/primary_text_dark"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:id="@+id/text_age_value"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:text="@string/text_age_value"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:textColorHighlight="@android:color/primary_text_dark"
+                        android:textSize="30sp" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/text_bounty"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:text="@string/bounty"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:textColorHighlight="@android:color/primary_text_dark"
+                        android:textSize="30sp" />
+
+                    <TextView
+                        android:id="@+id/text_bounty_value"
+                        android:layout_width="100dp"
+                        android:layout_height="50dp"
+                        android:layout_weight="1"
+                        android:text="@string/bounty_value"
+                        android:textColor="@android:color/holo_blue_dark"
+                        android:textColorHighlight="@android:color/primary_text_dark"
+                        android:textSize="30sp" />
+
+            </TableRow>
+
+        </TableLayout>
+
+
+    </LinearLayout>
+</LinearLayout>
