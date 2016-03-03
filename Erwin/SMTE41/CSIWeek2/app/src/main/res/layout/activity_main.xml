@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="org.csiweek1.MainActivity"
+    android:background="@android:color/black">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="170dp"
+        android:contentDescription="@string/image_name"
+        android:src="@drawable/webcrime1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10sp"
+            android:paddingStart="30sp"
+            android:paddingEnd="30sp"
+            android:paddingBottom="10sp">
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2"
+                android:background="@color/background_text"
+                android:layout_marginBottom="5dp"
+                android:paddingLeft="40dp">
+
+                    <TextView
+                        android:id="@+id/text_name"
+                        style="@style/textTitle"
+                        android:layout_weight="1"
+                        android:text="@string/criminal_name" />
+
+                    <TextView
+                        android:id="@+id/text_name_value"
+                        style="@style/textTitle"
+                        android:layout_weight="1"
+                        android:text="@string/criminal_name_value" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/background_text"
+                android:layout_marginBottom="5dp"
+                android:paddingLeft="40dp">
+
+                    <TextView
+                        android:id="@+id/text_gender"
+                        style="@style/textTitle"
+                        android:layout_weight="1"
+                        android:text="@string/gender" />
+
+                    <TextView
+                        android:id="@+id/text_gender_value"
+                        style="@style/textTitle"
+                        android:layout_weight="1"
+                        android:text="@string/gender_value" />
+
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/background_text"
+                android:layout_marginBottom="5dp"
+                android:paddingLeft="40dp">
+
+                    <TextView
+                        android:id="@+id/text_age"
+                        style="@style/textTitle"
+                        android:layout_weight="1"
+                        android:text="@string/text_age" />
+
+                    <TextView
+                        android:id="@+id/text_age_value"
+                        style="@style/textTitle"
+                        android:layout_weight="1"
+                        android:text="@string/text_age_value" />
+
+            </TableRow>
+
+            <TableRow
+                android:id="@+id/tableRow4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/background_text"
+                android:paddingLeft="40dp">
+
+                    <TextView
+                        android:id="@+id/text_bounty"
+                        style="@style/textTitle"
+                        android:layout_weight="1"
+                        android:text="@string/bounty"
+                        android:textColor="#FFFFFF" />
+
+                    <TextView
+                        android:id="@+id/text_bounty_value"
+                        style="@style/textTitle"
+                        android:layout_weight="1"
+                        android:text="@string/bounty_value"
+                        android:textColor="#FFFFFF" />
+
+            </TableRow>
+
+        </TableLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/textTitle.Medium"
+                android:text="@string/details"
+                android:layout_marginBottom="3dp"/>
+
+            <ScrollView
+                android:layout_width="fill_parent"
+                android:layout_height="90dp"
+                android:layout_marginBottom="2dp">
+
+                <TextView
+                    android:id="@+id/id_description"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/criminal_description"
+                    android:textColor="#FFFFFF"
+                    />
+
+            </ScrollView>
+
+            <Button
+                android:id="@+id/btnReport"
+                style="@style/button.center"
+                android:text="Report" />
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+</LinearLayout>

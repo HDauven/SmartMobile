@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="org.csiweek1.ReportActivity"
+    android:background="@color/colorPrimary">
+
+    <Button
+        android:id="@+id/btnTakePicture"
+        style="@style/button"
+        android:text="@string/picture_button_text"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"/>
+
+    <Button
+        style="@style/button"
+        android:text="@string/gps_position_button_text"
+        android:layout_alignParentEnd="true"
+        />
+
+    <ImageView
+        android:id="@+id/criminalPicture"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:src="@drawable/webcrime1"
+        android:layout_below="@+id/btnTakePicture"/>
+
+    <Button
+        style="@style/button"
+        android:layout_below="@+id/criminalPicture"
+        android:layout_centerHorizontal="true"
+        android:text="@string/calle113"/>
+
+    <Button
+        android:id="@+id/btnBack"
+        style="@style/button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="@string/back"/>
+
+    <Button
+        style="@style/button"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="@string/send"/>
+
+</RelativeLayout>
