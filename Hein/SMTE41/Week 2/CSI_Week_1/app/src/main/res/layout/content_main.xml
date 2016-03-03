@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="csi.hdauven.com.csi_week_1.MainActivity"
+    tools:showIn="@layout/activity_main"
+    android:background="#000000">
+
+
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:id="@+id/imgViewMain"
+        android:layout_gravity="top|center_horizontal"
+        android:src="@drawable/mybadguy"
+        android:contentDescription="@string/ImageString"
+        android:layout_weight="0" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="145dp"
+            android:baselineAligned="false"
+            android:measureWithLargestChild="true"
+            android:clickable="false"
+            android:background="@drawable/background">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:measureWithLargestChild="false"
+                android:background="#62068713"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/NameString"
+                        android:id="@+id/tvName"
+                        android:layout_gravity="left"
+                        android:layout_margin="2dp"
+                        android:textSize="20sp"
+                        android:textColor="#ffffff"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ValueString"
+                        android:id="@+id/tvNameValue"
+                        android:layout_gravity="right"
+                        android:layout_margin="2dp"
+                        android:textSize="20sp"
+                        android:textColor="#ffffff"
+                        android:layout_weight="1"
+                        android:gravity="right" />
+
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:measureWithLargestChild="false"
+                android:background="#62068713"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="3dp">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/GenderString"
+                        android:id="@+id/tvGender"
+                        android:layout_gravity="left"
+                        android:layout_margin="2dp"
+                        android:textSize="20sp"
+                        android:textColor="#ffffff"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ValueString"
+                        android:id="@+id/tvGenderValue"
+                        android:layout_gravity="right"
+                        android:layout_margin="2dp"
+                        android:textSize="20sp"
+                        android:textColor="#ffffff"
+                        android:gravity="right"
+                        android:layout_weight="1" />
+                </LinearLayout>
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#62068713"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="3dp">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/AgeString"
+                        android:id="@+id/tvAge"
+                        android:layout_gravity="left"
+                        android:layout_margin="2dp"
+                        android:textSize="20sp"
+                        android:textColor="#ffffff"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ValueString"
+                        android:id="@+id/tvAgeValue"
+                        android:layout_gravity="right"
+                        android:layout_margin="2dp"
+                        android:textSize="20sp"
+                        android:textColor="#ffffff"
+                        android:gravity="right"
+                        android:layout_weight="1" />
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#62068713"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="3dp">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:layout_marginRight="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/BountyString"
+                        android:id="@+id/tvBounty"
+                        android:layout_gravity="left"
+                        android:layout_margin="2dp"
+                        android:textSize="20sp"
+                        android:textColor="#ffffff"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ValueString"
+                        android:id="@+id/tvBountyValue"
+                        android:layout_gravity="right"
+                        android:layout_margin="2dp"
+                        android:textSize="20sp"
+                        android:textColor="#ffffff"
+                        android:layout_weight="1"
+                        android:gravity="right" />
+                </LinearLayout>
+            </TableRow>
+        </TableLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/DetailsString"
+                android:id="@+id/tvDetails"
+                android:textColor="#ffffff"
+                android:textSize="20sp" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                android:id="@+id/scrollView">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/DetailsTextView"
+                    android:id="@+id/txtViewDetails"
+                    android:textColor="#ffffff" />
+            </ScrollView>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ReportString"
+                android:id="@+id/btnReport"
+                android:layout_gravity="center_horizontal" />
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
