@@ -25,9 +25,8 @@
         android:layout_weight="0" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        style="@style/LinearLayout.Vertical">
+
         <TableLayout
             android:layout_width="match_parent"
             android:layout_height="145dp"
@@ -37,180 +36,88 @@
             android:background="@drawable/background">
 
             <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:measureWithLargestChild="false"
-                android:background="#62068713"
-                android:layout_marginRight="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp">
+                style="@style/TableRowBase.First">
 
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="fill_parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:layout_marginRight="20dp">
+                    style="@style/TableRowLayout">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/TextViewBase.Margin.Left"
                         android:text="@string/NameString"
-                        android:id="@+id/tvName"
-                        android:layout_gravity="left"
-                        android:layout_margin="2dp"
-                        android:textSize="20sp"
-                        android:textColor="#ffffff"
-                        android:layout_weight="1" />
+                        android:id="@+id/tvName" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/TextViewBase.Margin.Right"
                         android:text="@string/ValueString"
-                        android:id="@+id/tvNameValue"
-                        android:layout_gravity="right"
-                        android:layout_margin="2dp"
-                        android:textSize="20sp"
-                        android:textColor="#ffffff"
-                        android:layout_weight="1"
-                        android:gravity="right" />
+                        android:id="@+id/tvNameValue" />
 
                 </LinearLayout>
 
             </TableRow>
 
             <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:measureWithLargestChild="false"
-                android:background="#62068713"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="3dp">
+                style="@style/TableRowBase">
 
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:layout_marginRight="20dp">
+                    style="@style/TableRowLayout">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/TextViewBase.Margin.Left"
                         android:text="@string/GenderString"
-                        android:id="@+id/tvGender"
-                        android:layout_gravity="left"
-                        android:layout_margin="2dp"
-                        android:textSize="20sp"
-                        android:textColor="#ffffff"
-                        android:layout_weight="1" />
+                        android:id="@+id/tvGender" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/TextViewBase.Margin.Right"
                         android:text="@string/ValueString"
-                        android:id="@+id/tvGenderValue"
-                        android:layout_gravity="right"
-                        android:layout_margin="2dp"
-                        android:textSize="20sp"
-                        android:textColor="#ffffff"
-                        android:gravity="right"
-                        android:layout_weight="1" />
+                        android:id="@+id/tvGenderValue" />
                 </LinearLayout>
 
             </TableRow>
 
             <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#62068713"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="3dp">
+                style="@style/TableRowBase">
 
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:layout_marginRight="20dp">
+                    style="@style/TableRowLayout">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/TextViewBase.Margin.Left"
                         android:text="@string/AgeString"
-                        android:id="@+id/tvAge"
-                        android:layout_gravity="left"
-                        android:layout_margin="2dp"
-                        android:textSize="20sp"
-                        android:textColor="#ffffff"
-                        android:layout_weight="1" />
+                        android:id="@+id/tvAge" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/TextViewBase.Margin.Right"
                         android:text="@string/ValueString"
-                        android:id="@+id/tvAgeValue"
-                        android:layout_gravity="right"
-                        android:layout_margin="2dp"
-                        android:textSize="20sp"
-                        android:textColor="#ffffff"
-                        android:gravity="right"
-                        android:layout_weight="1" />
+                        android:id="@+id/tvAgeValue" />
                 </LinearLayout>
             </TableRow>
 
             <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#62068713"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="3dp">
+                style="@style/TableRowBase">
 
                 <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_marginLeft="20dp"
-                    android:layout_weight="1"
-                    android:layout_marginRight="20dp">
+                    style="@style/TableRowLayout">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/TextViewBase.Margin.Left"
                         android:text="@string/BountyString"
-                        android:id="@+id/tvBounty"
-                        android:layout_gravity="left"
-                        android:layout_margin="2dp"
-                        android:textSize="20sp"
-                        android:textColor="#ffffff"
-                        android:layout_weight="1" />
+                        android:id="@+id/tvBounty" />
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        style="@style/TextViewBase.Margin.Right"
                         android:text="@string/ValueString"
-                        android:id="@+id/tvBountyValue"
-                        android:layout_gravity="right"
-                        android:layout_margin="2dp"
-                        android:textSize="20sp"
-                        android:textColor="#ffffff"
-                        android:layout_weight="1"
-                        android:gravity="right" />
+                        android:id="@+id/tvBountyValue" />
                 </LinearLayout>
             </TableRow>
         </TableLayout>
 
         <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            style="@style/LinearLayout.Vertical">
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/TextViewBase"
                 android:text="@string/DetailsString"
-                android:id="@+id/tvDetails"
-                android:textColor="#ffffff"
-                android:textSize="20sp" />
+                android:id="@+id/tvDetails" />
 
             <ScrollView
                 android:layout_width="match_parent"
@@ -218,20 +125,15 @@
                 android:id="@+id/scrollView">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/TextViewBase.Margin.Details"
                     android:text="@string/DetailsTextView"
-                    android:id="@+id/txtViewDetails"
-                    android:textColor="#ffffff" />
+                    android:id="@+id/txtViewDetails" />
             </ScrollView>
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/ButtonBase.Centered"
                 android:text="@string/ReportString"
-                android:id="@+id/btnReport"
-                android:layout_gravity="center_horizontal" />
+                android:id="@+id/btnReport" />
         </LinearLayout>
-
     </LinearLayout>
 </LinearLayout>
