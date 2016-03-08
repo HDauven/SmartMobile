@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">CSI_Week_1</string>
+    <string name="action_settings">Settings</string>
+    <string name="ImageString">description</string>
+    <string name="NameString">Name</string>
+    <string name="BountyString">Bounty</string>
+    <string name="GenderString">Gender</string>
+    <string name="AgeString">Age</string>
+    <string name="ValueString">Value</string>
+    <string name="DetailsString">Details</string>
+    <string name="ReportString">Report</string>
+    <string name="DetailsTextView">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eget auctor neque, at suscipit libero. Morbi nec porta risus. Praesent semper elit nisi, at tempus turpis interdum id. Sed consectetur massa sed libero accumsan pulvinar. Duis interdum turpis eget dolor placerat dictum. Curabitur augue libero, bibendum eget tristique eu, semper sed ligula. Praesent a elit lorem. Aliquam eleifend justo non ante consectetur venenatis. Donec nec porttitor odio, quis dignissim ante. Nam luctus in quam in rutrum. Cras vitae libero eget augue hendrerit pulvinar ac ac nunc. Fusce metus felis, mollis a tincidunt porta, fringilla et nisl. Vestibulum vitae erat metus. Vestibulum luctus molestie gravida.</string>
+    <string name="title_activity_report">ReportActivity</string>
+    <string name="takePictureText">Take picture</string>
+    <string name="backText">Back</string>
+    <string name="sendText">Send</string>
+    <string name="gpsText">GPS position</string>
+    <string name="callText">Call 113</string>
+    <string name="scumText">Criminal scum</string>
+</resources>
