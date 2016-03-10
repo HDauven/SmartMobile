@@ -33,6 +33,9 @@ public class CriminalsList extends AppCompatActivity {
         ListView listView = (ListView) findViewById(R.id.listView);
         // Get a reference to the list with names
         final String[] criminals = getResources().getStringArray(R.array.names);
+        final String[] genders = getResources().getStringArray(R.array.genders);
+        final int[] ages = getResources().getIntArray(R.array.ages);
+        final String[] bounties = getResources().getStringArray(R.array.bounties);
 
         listView.setAdapter(
                 new ArrayAdapter<String>(
@@ -42,14 +45,28 @@ public class CriminalsList extends AppCompatActivity {
                 )
         );
 
+        /*listView.setAdapter(
+                new ArrayAdapter<String>(
+                        this,
+                        android.R.layout.simple_list_item_1,
+                        bounties
+                )
+        );*/
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // Get the name from the array that is in the same position as the chosen listitem.
                 String name = criminals[position];
+                String gender = genders[position];
+                int age = ages[position];
+                String bounty = bounties[position];
                 // Start intent and pass name using putExtra.
                 Intent intentDisplayCriminalInformation = new Intent(getApplicationContext(), MainActivity.class);
                 intentDisplayCriminalInformation.putExtra("CriminalName", name);
+                intentDisplayCriminalInformation.putExtra("CriminalGender", gender);
+                intentDisplayCriminalInformation.putExtra("CriminalAge", age);
+                intentDisplayCriminalInformation.putExtra("CriminalBounty", bounty);
                 startActivity(intentDisplayCriminalInformation);
             }
         });

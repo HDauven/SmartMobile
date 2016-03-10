@@ -49,10 +49,20 @@ public class MainActivity extends AppCompatActivity {
         Intent intentFromCriminalsList = getIntent();
         // Retrieve the CriminalName string, given by the calling activity to the new activity
         String criminalName = intentFromCriminalsList.getStringExtra("CriminalName");
+        String criminalGender = intentFromCriminalsList.getStringExtra("CriminalGender");
+        int criminalAge = intentFromCriminalsList.getIntExtra("CriminalAge", 0);
+        String tmpCriminalAge = String.valueOf(criminalAge);
+        String criminalBounty = intentFromCriminalsList.getStringExtra("CriminalBounty");
         // Get the TextView that should contain the name of the criminal
         TextView tvNameValue = (TextView) findViewById(R.id.tvNameValue);
+        TextView tvGenderValue = (TextView) findViewById(R.id.tvGenderValue);
+        TextView tvAgeValue = (TextView) findViewById(R.id.tvAgeValue);
+        TextView tvBountyValue = (TextView) findViewById(R.id.tvBountyValue);
         // Set the TextViews text to the name of the criminal
         tvNameValue.setText(criminalName);
+        tvGenderValue.setText(criminalGender);
+        tvAgeValue.setText(tmpCriminalAge);
+        tvBountyValue.setText(criminalBounty);
     }
 
     @Override
