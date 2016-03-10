@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="names">
+        <item>Victor Gerena</item>
+        <item>Glen Godwin</item>
+        <item>Alexis Flores</item>
+        <item>Eduardo Ravelo</item>
+        <item>Fidel Urbina</item>
+        <item>William Bishop Jr.</item>
+        <item>Yaser Abdel Said</item>
+    </string-array>
+</resources>

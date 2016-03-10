@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,6 +40,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        // Get the intent belonging to the calling activity
+        Intent intentFromCriminalsList = getIntent();
+        // Retrieve the CriminalName string, given by the calling activity to the new activity
+        String criminalName = intentFromCriminalsList.getStringExtra("CriminalName");
+        // Get the TextView that should contain the name of the criminal
+        TextView tvNameValue = (TextView) findViewById(R.id.tvNameValue);
+        // Set the TextViews text to the name of the criminal
+        tvNameValue.setText(criminalName);
     }
 
     @Override

@@ -3,7 +3,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
-    
+
     <dimen name="button_curve_subtle">5dp</dimen>
     <dimen name="button_curve">10dp</dimen>
     <dimen name="button_curve_base">1dp</dimen>
