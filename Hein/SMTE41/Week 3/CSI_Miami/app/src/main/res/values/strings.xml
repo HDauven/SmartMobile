@@ -17,5 +17,6 @@
     <string name="gpsText">GPS position</string>
     <string name="callText">Call 113</string>
     <string name="scumText">Criminal scum</string>
-    <string name="title_activity_criminalslist">CSI Miami - Criminal details</string>
+    <string name="title_activity_criminalslist">CSI Miami - Criminals</string>
+    <string name="title_activity_main">CSI Miami - Criminal details</string>
 </resources>
