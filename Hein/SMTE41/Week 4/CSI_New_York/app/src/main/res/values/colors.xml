@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#894403</color>
+    <color name="colorPrimaryDark">#2e2a1d</color>
+    <color name="colorAccent">#353233</color>
+
+    <color name="MainTitle">#f9e931</color>
+    <color name="SubTitle">#f9e931</color>
+
+    <color name="WarmOrange">#fbd45b</color>
+    <color name="EvenWarmerOrange">#e9821b</color>
+    <color name="SubtleOrange">#ffe69b</color>
+
+    <color name="BlackText">#000000</color>
+
+    <color name="WhiteText">#FFFFFF</color>
+
+    <color name="ButtonStart">#454545</color>
+    <color name="ButtonCenter">#241C0A</color>
+    <color name="ButtonEnd">#000000</color>
+    <color name="ButtonText">#FFFFFF</color>
+
+    <color name="TableLayout">#ee7f16</color>
+    <color name="TableLayoutDark">#eb711b</color>
+
+    <color name="TableRowBackground">#99000000</color>
+    <color name="TableRowText">#FFFFFF</color>
+</resources>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="csi.hdauven.com.csi_week_1.ReportActivity"
+    tools:showIn="@layout/activity_report"
+    style="@style/ActivityLayout">
+
+    <Button
+        style="@style/ButtonBase"
+        android:text="@string/takePictureText"
+        android:id="@+id/btnTakePicture"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10sp"
+        android:paddingRight="10sp" />
+
+    <Button
+        style="@style/ButtonBase"
+        android:text="@string/backText"
+        android:id="@+id/btnBack"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="45dp" />
+
+    <Button
+        style="@style/ButtonBase"
+        android:text="@string/sendText"
+        android:id="@+id/btnSend"
+        android:layout_above="@+id/btnBack"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="45dp" />
+
+    <Button
+        style="@style/ButtonBase"
+        android:text="@string/gpsText"
+        android:id="@+id/btnGPS"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="false"
+        android:paddingLeft="10sp"
+        android:paddingRight="10sp" />
+
+    <ImageView
+        android:layout_below="@+id/btnTakePicture"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:id="@+id/imgViewReport"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="false"
+        android:src="@drawable/mybadguy"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false"
+        android:layout_margin="5dp"
+        android:contentDescription="@string/scumText" />
+
+    <Button
+        style="@style/ButtonBase"
+        android:text="@string/callText"
+        android:id="@+id/btnCall"
+        android:layout_below="@+id/imgViewReport"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
