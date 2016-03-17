@@ -23,18 +23,26 @@
     <style name="button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/buttonshape</item>
     </style>
 
         <style name="button.center">
             <item name="android:layout_gravity">center_horizontal</item>
+            <item name="android:background">@drawable/buttonshape</item>
         </style>
 
         <style name="button.left">
             <item name="android:layout_gravity">left</item>
+            <item name="android:background">@drawable/buttonshape</item>
         </style>
 
         <style name="button.right">
             <item name="android:layout_gravity">right</item>
+            <item name="android:background">@drawable/buttonshape</item>
         </style>
+    
+    <style name="listview">
+
+    </style>
 
 </resources>
