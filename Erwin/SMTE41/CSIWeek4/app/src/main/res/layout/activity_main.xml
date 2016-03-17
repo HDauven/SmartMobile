@@ -18,6 +18,8 @@
         android:contentDescription="@string/image_name"
         android:src="@drawable/webcrime1" />
 
+
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -38,25 +40,19 @@
                 android:weightSum="2"
                 android:background="@color/background_text"
                 android:layout_marginBottom="5dp"
-                android:paddingLeft="40dp">
+                android:paddingStart="40dp">
 
                     <TextView
                         android:id="@+id/text_name"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
+                        style="@style/textTitle"
                         android:layout_weight="1"
-                        android:text="@string/criminal_name"
-                        android:textSize="22sp"
-                        android:textColor="#FFFFFF"/>
+                        android:text="@string/criminal_name" />
 
                     <TextView
                         android:id="@+id/text_name_value"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
+                        style="@style/textTitle"
                         android:layout_weight="1"
-                        android:text="@string/criminal_name_value"
-                        android:textColor="#FFFFFF"
-                        android:textSize="22sp" />
+                        android:text="@string/criminal_name_value" />
 
             </TableRow>
 
@@ -70,21 +66,15 @@
 
                     <TextView
                         android:id="@+id/text_gender"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
+                        style="@style/textTitle"
                         android:layout_weight="1"
-                        android:text="@string/gender"
-                        android:textColor="#FFFFFF"
-                        android:textSize="22sp" />
+                        android:text="@string/gender" />
 
                     <TextView
                         android:id="@+id/text_gender_value"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
+                        style="@style/textTitle"
                         android:layout_weight="1"
-                        android:text="@string/gender_value"
-                        android:textColor="#FFFFFF"
-                        android:textSize="22sp" />
+                        android:text="@string/gender_value" />
 
 
             </TableRow>
@@ -99,21 +89,15 @@
 
                     <TextView
                         android:id="@+id/text_age"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
+                        style="@style/textTitle"
                         android:layout_weight="1"
-                        android:text="@string/text_age"
-                        android:textColor="#FFFFFF"
-                        android:textSize="22sp" />
+                        android:text="@string/text_age" />
 
                     <TextView
                         android:id="@+id/text_age_value"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
+                        style="@style/textTitle"
                         android:layout_weight="1"
-                        android:text="@string/text_age_value"
-                        android:textColor="#FFFFFF"
-                        android:textSize="22sp" />
+                        android:text="@string/text_age_value" />
 
             </TableRow>
 
@@ -126,21 +110,17 @@
 
                     <TextView
                         android:id="@+id/text_bounty"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
+                        style="@style/textTitle"
                         android:layout_weight="1"
                         android:text="@string/bounty"
-                        android:textColor="#FFFFFF"
-                        android:textSize="22sp" />
+                        android:textColor="#FFFFFF" />
 
                     <TextView
                         android:id="@+id/text_bounty_value"
-                        android:layout_width="100dp"
-                        android:layout_height="wrap_content"
+                        style="@style/textTitle"
                         android:layout_weight="1"
                         android:text="@string/bounty_value"
-                        android:textColor="#FFFFFF"
-                        android:textSize="22sp" />
+                        android:textColor="#FFFFFF" />
 
             </TableRow>
 
@@ -152,11 +132,8 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                style="@style/textTitle.Medium"
                 android:text="@string/details"
-                android:textColor="#FFFFFF"
-                android:textSize="20dp"
                 android:layout_marginBottom="3dp"/>
 
             <ScrollView
@@ -176,10 +153,8 @@
 
             <Button
                 android:id="@+id/btnReport"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Report"
-                android:layout_gravity="center_horizontal"/>
+                style="@style/button.center"
+                android:text="Report" />
 
         </LinearLayout>
 

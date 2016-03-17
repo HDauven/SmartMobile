@@ -8,33 +8,4 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="textTitle">
-        <item name="android:layout_width">100dp</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">22sp</item>
-        <item name="android:textColor">#FFFFFF</item>
-    </style>
-
-        <style name="textTitle.Medium">
-            <item name="android:layout_width">fill_parent</item>
-            <item name="android:textSize">20sp</item>
-        </style>
-
-    <style name="button">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
-
-        <style name="button.center">
-            <item name="android:layout_gravity">center_horizontal</item>
-        </style>
-
-        <style name="button.left">
-            <item name="android:layout_gravity">left</item>
-        </style>
-
-        <style name="button.right">
-            <item name="android:layout_gravity">right</item>
-        </style>
-
 </resources>
