@@ -1,6 +1,7 @@
 package csi.hdauven.com.csi_week_1;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,9 +12,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
+    CriminalProvider criminalProvider;
+    int chosenCriminalPosition;
+    Criminal chosenCriminal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intentReport);
             }
         });
-
     }
 
     @Override
@@ -47,22 +52,37 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         // Get the intent belonging to the calling activity
         Intent intentFromCriminalsList = getIntent();
-        // Retrieve the CriminalName string, given by the calling activity to the new activity
-        String criminalName = intentFromCriminalsList.getStringExtra("CriminalName");
-        String criminalGender = intentFromCriminalsList.getStringExtra("CriminalGender");
-        int criminalAge = intentFromCriminalsList.getIntExtra("CriminalAge", 0);
+
+        // Get the position of the chosen criminal from the intent
+        chosenCriminalPosition = intentFromCriminalsList.getIntExtra("chosenCriminalPosition", 0);
+
+        // Create the CriminalProvider, which holds the criminals
+        criminalProvider = new CriminalProvider(getApplicationContext());
+
+        // Get the chosen criminal from the CriminalProvider, through the position
+        chosenCriminal = criminalProvider.GetCriminal(chosenCriminalPosition);
+
+        // Retrieve the values from the chosen criminal
+        String criminalName = chosenCriminal.name;
+        String criminalGender = chosenCriminal.gender;
+        int criminalAge = chosenCriminal.age;
         String tmpCriminalAge = String.valueOf(criminalAge);
-        String criminalBounty = intentFromCriminalsList.getStringExtra("CriminalBounty");
+        int criminalBounty = chosenCriminal.getBountyInDollars();
+        Drawable criminalMugshot = chosenCriminal.mugshot;
+
         // Get the TextView that should contain the name of the criminal
         TextView tvNameValue = (TextView) findViewById(R.id.tvNameValue);
         TextView tvGenderValue = (TextView) findViewById(R.id.tvGenderValue);
         TextView tvAgeValue = (TextView) findViewById(R.id.tvAgeValue);
         TextView tvBountyValue = (TextView) findViewById(R.id.tvBountyValue);
+        ImageView imgMugshot = (ImageView) findViewById(R.id.imgViewMain);
+
         // Set the TextViews text to the name of the criminal
         tvNameValue.setText(criminalName);
         tvGenderValue.setText(criminalGender);
         tvAgeValue.setText(tmpCriminalAge);
-        tvBountyValue.setText(criminalBounty);
+        tvBountyValue.setText(String.format("$ %d,-", criminalBounty));
+        imgMugshot.setImageDrawable(criminalMugshot);
     }
 
     @Override

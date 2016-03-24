@@ -11,7 +11,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.List;
+
 public class CriminalsList extends AppCompatActivity {
+
+    List<Criminal> criminals;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +36,7 @@ public class CriminalsList extends AppCompatActivity {
         // Get a reference to the listview
         ListView listView = (ListView) findViewById(R.id.listView);
         // Get a reference to the list with names
-        final String[] criminals = getResources().getStringArray(R.array.names);
+        final String[] names = getResources().getStringArray(R.array.names);
         final String[] genders = getResources().getStringArray(R.array.genders);
         final int[] ages = getResources().getIntArray(R.array.ages);
         final String[] bounties = getResources().getStringArray(R.array.bounties);
@@ -41,7 +45,7 @@ public class CriminalsList extends AppCompatActivity {
                 new ArrayAdapter<String>(
                         this,
                         android.R.layout.simple_list_item_1,
-                        criminals
+                        names
                 )
         );
 
@@ -57,7 +61,7 @@ public class CriminalsList extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 // Get the name from the array that is in the same position as the chosen listitem.
-                String name = criminals[position];
+                String name = names[position];
                 String gender = genders[position];
                 int age = ages[position];
                 String bounty = bounties[position];
@@ -70,6 +74,27 @@ public class CriminalsList extends AppCompatActivity {
                 startActivity(intentDisplayCriminalInformation);
             }
         });
+
+        //*****************************************************//
+        //Some example code below on how to use CriminalProvider:
+        CriminalProvider criminalProvider = new CriminalProvider(getApplicationContext());
+        criminals = criminalProvider.GetCriminals();
+
+        CriminalListAdapter criminalListAdapter =
+                new CriminalListAdapter(getApplicationContext(), criminals);
+
+        listView.setAdapter(criminalListAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Start intent and pass name using putExtra.
+                Intent intentDisplayCriminalInformation = new Intent(getApplicationContext(), MainActivity.class);
+                intentDisplayCriminalInformation.putExtra("chosenCriminalPosition", position);
+                startActivity(intentDisplayCriminalInformation);
+            }
+        });
+
     }
 
 }
