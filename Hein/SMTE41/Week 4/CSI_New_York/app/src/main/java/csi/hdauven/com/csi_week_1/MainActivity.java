@@ -13,13 +13,17 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     CriminalProvider criminalProvider;
     int chosenCriminalPosition;
     Criminal chosenCriminal;
+    List<Crime> crimes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +87,14 @@ public class MainActivity extends AppCompatActivity {
         tvAgeValue.setText(tmpCriminalAge);
         tvBountyValue.setText(String.format("$ %d,-", criminalBounty));
         imgMugshot.setImageDrawable(criminalMugshot);
+
+        crimes = criminalProvider.GetCriminal(chosenCriminalPosition).crimes;
+
+        CrimeListAdapter crimeListAdapter =
+                new CrimeListAdapter(getApplicationContext(), crimes);
+
+        ListView listViewCrimes = (ListView) findViewById(R.id.listViewCrimes);
+        listViewCrimes.setAdapter(crimeListAdapter);
     }
 
     @Override

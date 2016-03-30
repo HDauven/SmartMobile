@@ -8,23 +8,19 @@
     tools:showIn="@layout/activity_main"
     style="@style/ActivityLayout">
 
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:id="@+id/imgViewMain"
-        android:layout_gravity="top|center_horizontal"
-        android:src="@drawable/mybadguy"
-        android:contentDescription="@string/ImageString"
-        android:layout_weight="0"/>
-
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/line_shape">
-    </LinearLayout>
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
-    <LinearLayout
-        style="@style/LinearLayout.Vertical">
+        <ImageView
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:id="@+id/imgViewMain"
+            android:src="@drawable/mybadguy"
+            android:contentDescription="@string/ImageString"
+            android:layout_weight="0"
+            android:layout_gravity="left" />
 
         <TableLayout
             android:layout_width="match_parent"
@@ -109,6 +105,26 @@
                 </LinearLayout>
             </TableRow>
         </TableLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_shape">
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="160dp"
+        android:id="@+id/listViewCrimes" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/line_shape" />
+
+    <LinearLayout
+        style="@style/LinearLayout.Vertical">
 
         <LinearLayout
             style="@style/LinearLayout.Vertical">
