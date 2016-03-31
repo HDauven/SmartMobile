@@ -32,9 +32,28 @@
 
     <Button
         style="@style/button"
+        android:id="@+id/SCA_ON"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SCA ON"
+        android:layout_below="@+id/criminalPicture"
+        />
+
+    <Button
+        style="@style/button"
         android:layout_below="@+id/criminalPicture"
         android:layout_centerHorizontal="true"
         android:text="@string/calle113"/>
+
+    <Button
+        style="@style/button"
+        android:id="@+id/SCA_OFF"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/criminalPicture"
+        android:text="SCA OFF"
+        android:layout_below="@+id/criminalPicture"
+        />
 
     <Button
         android:id="@+id/btnBack"
