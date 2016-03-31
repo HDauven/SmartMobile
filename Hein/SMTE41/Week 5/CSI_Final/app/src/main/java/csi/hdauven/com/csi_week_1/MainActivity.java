@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intentReport = new Intent(getApplicationContext(), ReportActivity.class);
+                intentReport.putExtra("chosenCriminalPosition", chosenCriminalPosition);
                 startActivity(intentReport);
             }
         });
