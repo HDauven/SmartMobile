@@ -2,7 +2,10 @@ package org.csiweek1;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Resources;
 import android.location.Location;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -85,7 +88,7 @@ public class CriminalProvider {
 			someCriminal.description = criminalDetails[criminalIndex];
 			
 			int drawableId = drawableIds[criminalIndex  % drawableIds.length];
-			someCriminal.mugshot = context.getResources().getDrawable(drawableId);
+			someCriminal.mugshot = ResourcesCompat.getDrawable(context.getResources(), drawableId, null);
 			
 			Random r = new Random();
 			someCriminal.gender = r.nextBoolean() ? "Male":"Female";
@@ -114,7 +117,7 @@ public class CriminalProvider {
 	 * Creates a random crime. The name and description are picked from the resource files.
 	 * @return The random crime.
 	 */
-	private Crime createRandomCrime(String [] crimeNames, String[] crimeDetails)
+	public Crime createRandomCrime(String [] crimeNames, String[] crimeDetails)
 	{
 		Crime randomCrime = new Crime();
 		Random r = new Random();

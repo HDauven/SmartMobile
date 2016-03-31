@@ -43,7 +43,7 @@ public class CriminalListAdapter extends ArrayAdapter<Criminal> {
 		priceView.setText(String.format("$ %d,-",requestedCriminal.getBountyInDollars()));
 
 		ImageView imageView = (ImageView) criminalView.findViewById(R.id.mugshot);
-		imageView.setImageResource(R.drawable.mugshot1);
+		imageView.setImageDrawable(requestedCriminal.mugshot);
 
 		return criminalView;
 	}

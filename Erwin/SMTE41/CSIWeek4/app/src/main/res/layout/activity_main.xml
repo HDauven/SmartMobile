@@ -11,120 +11,139 @@
     tools:context="org.csiweek1.MainActivity"
     android:background="@android:color/black">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="170dp"
-        android:contentDescription="@string/image_name"
-        android:src="@drawable/webcrime1" />
-
-
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TableLayout
+        <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="10sp"
-            android:paddingStart="30sp"
-            android:paddingEnd="30sp"
-            android:paddingBottom="10sp">
+            android:weightSum="2"
+            android:orientation="horizontal">
 
-            <TableRow
-                android:id="@+id/tableRow1"
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="70dp"
+                android:contentDescription="@string/image_name"
+                android:src="@drawable/webcrime1"
+                android:layout_weight="1.5"/>
+
+            <TableLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:weightSum="2"
-                android:background="@color/background_text"
-                android:layout_marginBottom="5dp"
-                android:paddingStart="40dp">
+                android:paddingTop="10sp"
+                android:paddingStart="30sp"
+                android:paddingEnd="30sp"
+                android:paddingBottom="10sp">
+
+                <TableRow
+                    android:id="@+id/tableRow1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="2"
+                    android:background="@color/background_text"
+                    android:layout_marginBottom="5dp"
+                    android:paddingStart="15dp">
 
                     <TextView
                         android:id="@+id/text_name"
                         style="@style/textTitle"
-                        android:layout_weight="1"
+                        android:layout_weight="0.6"
                         android:text="@string/criminal_name" />
 
                     <TextView
                         android:id="@+id/text_name_value"
                         style="@style/textTitle"
-                        android:layout_weight="1"
+                        android:layout_weight="0.6"
                         android:text="@string/criminal_name_value" />
 
-            </TableRow>
+                </TableRow>
 
-            <TableRow
-                android:id="@+id/tableRow2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/background_text"
-                android:layout_marginBottom="5dp"
-                android:paddingLeft="40dp">
+                <TableRow
+                    android:id="@+id/tableRow2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/background_text"
+                    android:layout_marginBottom="5dp"
+                    android:paddingLeft="15dp"
+                    android:weightSum="2">
 
                     <TextView
                         android:id="@+id/text_gender"
                         style="@style/textTitle"
-                        android:layout_weight="1"
+                        android:layout_weight="0.6"
                         android:text="@string/gender" />
 
                     <TextView
                         android:id="@+id/text_gender_value"
                         style="@style/textTitle"
-                        android:layout_weight="1"
+                        android:layout_weight="0.6"
                         android:text="@string/gender_value" />
 
 
-            </TableRow>
+                </TableRow>
 
-            <TableRow
-                android:id="@+id/tableRow3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/background_text"
-                android:layout_marginBottom="5dp"
-                android:paddingLeft="40dp">
+                <TableRow
+                    android:id="@+id/tableRow3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/background_text"
+                    android:layout_marginBottom="5dp"
+                    android:paddingLeft="15dp"
+                    android:weightSum="2">
 
                     <TextView
                         android:id="@+id/text_age"
                         style="@style/textTitle"
-                        android:layout_weight="1"
+                        android:layout_weight="0.6"
                         android:text="@string/text_age" />
 
                     <TextView
                         android:id="@+id/text_age_value"
                         style="@style/textTitle"
-                        android:layout_weight="1"
+                        android:layout_weight="0.6"
                         android:text="@string/text_age_value" />
 
-            </TableRow>
+                </TableRow>
 
-            <TableRow
-                android:id="@+id/tableRow4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/background_text"
-                android:paddingLeft="40dp">
+                <TableRow
+                    android:id="@+id/tableRow4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/background_text"
+                    android:paddingLeft="15dp"
+                    android:weightSum="2">
 
                     <TextView
                         android:id="@+id/text_bounty"
                         style="@style/textTitle"
-                        android:layout_weight="1"
+                        android:layout_weight="0.6"
                         android:text="@string/bounty"
                         android:textColor="#FFFFFF" />
 
                     <TextView
                         android:id="@+id/text_bounty_value"
                         style="@style/textTitle"
-                        android:layout_weight="1"
+                        android:layout_weight="0.6"
                         android:text="@string/bounty_value"
                         android:textColor="#FFFFFF" />
 
-            </TableRow>
+                </TableRow>
 
-        </TableLayout>
+            </TableLayout>
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/crimeList"
+            android:layout_width="fill_parent"
+            android:layout_height="150dp">
+
+        </ListView>
+
+
 
         <LinearLayout
             android:layout_width="fill_parent"

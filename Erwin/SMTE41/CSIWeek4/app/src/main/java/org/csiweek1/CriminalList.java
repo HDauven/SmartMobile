@@ -26,11 +26,9 @@ public class CriminalList extends AppCompatActivity {
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
-                //Get the name from the array that is in the same position as the chosen listitem.
-                Criminal criminal = criminals.get(position);
                 //Todo start intent and pass name using putExtra
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                intent.putExtra("name", criminal.name);
+                intent.putExtra("positionCriminal", position);
                 startActivity(intent);
             }
         });
