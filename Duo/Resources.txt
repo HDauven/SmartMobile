@@ -1,0 +1,5 @@
+http://developer.android.com/training/implementing-navigation/nav-drawer.html
+
+http://developer.android.com/training/implementing-navigation/lateral.html
+
+http://www.tutorialspoint.com/android/android_grid_view.htm
