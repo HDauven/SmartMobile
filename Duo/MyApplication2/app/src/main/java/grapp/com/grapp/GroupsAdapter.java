@@ -1,6 +1,10 @@
 package grapp.com.grapp;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,9 +60,14 @@ public class GroupsAdapter extends BaseAdapter {
         }
 
         viewHolder.textInViewHolder.setText(String.valueOf(groupsList.get(position).getGroupName()));
+
         int imageResourceId = this.context.getResources().getIdentifier(
                 groupsList.get(position).getImageResource(), "drawable", this.context.getPackageName());
-        viewHolder.imageInViewholder.setImageResource(imageResourceId);
+        Bitmap src = BitmapFactory.decodeResource(this.context.getResources(), imageResourceId);
+        RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(this.context.getResources(), src);
+        drawable.setCircular(true);
+
+        viewHolder.imageInViewholder.setImageDrawable(drawable);
 
         return convertView;
     }

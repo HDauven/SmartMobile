@@ -6,16 +6,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/groups_group_imageView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"/>
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:paddingBottom="12dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=""
-        android:id="@+id/groups_group_textView" android:layout_below="@id/groups_group_imageView"
+        android:id="@+id/groups_group_textView"
+        android:layout_below="@id/groups_group_imageView"
         android:gravity="center"
-        android:layout_marginTop="16dp"/>
+        android:layout_centerHorizontal="true"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"/>
 
 </RelativeLayout>

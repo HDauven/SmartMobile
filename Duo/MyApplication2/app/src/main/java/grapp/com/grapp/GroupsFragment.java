@@ -40,6 +40,24 @@ public class GroupsFragment extends Fragment {
         groups.add(new GrappGroup("S42", "four"));
         groups.add(new GrappGroup("Dream Team", "five"));
         groups.add(new GrappGroup("Family", "six"));
+        groups.add(new GrappGroup("Badminton", "seven"));
+        groups.add(new GrappGroup("Proftaak", "eight"));
+        groups.add(new GrappGroup("Grapp Project", "one"));
+        groups.add(new GrappGroup("Vacation", "two"));
+        groups.add(new GrappGroup("Maatwerk", "three"));
+        groups.add(new GrappGroup("S42", "four"));
+        groups.add(new GrappGroup("Dream Team", "five"));
+        groups.add(new GrappGroup("Family", "six"));
+        groups.add(new GrappGroup("Badminton", "seven"));
+        groups.add(new GrappGroup("Proftaak", "eight"));
+        groups.add(new GrappGroup("Grapp Project", "one"));
+        groups.add(new GrappGroup("Vacation", "two"));
+        groups.add(new GrappGroup("Maatwerk", "three"));
+        groups.add(new GrappGroup("S42", "four"));
+        groups.add(new GrappGroup("Dream Team", "five"));
+        groups.add(new GrappGroup("Family", "six"));
+        groups.add(new GrappGroup("Badminton", "seven"));
+        groups.add(new GrappGroup("Proftaak", "eight"));
 
         return groups;
     }
