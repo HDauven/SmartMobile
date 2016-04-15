@@ -26,7 +26,7 @@ public class ChatsAdapter extends BaseAdapter {
     public ChatsAdapter(Context context, List<GrappChat> chatsList) {
         super();
         this.context = context;
-        layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.chatsList = chatsList;
     }
 

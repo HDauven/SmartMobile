@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/notifications_notification_ivImage"
+        android:maxHeight="60dp"
+        android:maxWidth="60dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_centerVertical="true"
+        android:layout_margin="10dp"/>
+
+    <LinearLayout
+        android:id="@+id/notifications_notification_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_toRightOf="@id/notifications_notification_ivImage">
+
+        <TextView
+            android:id="@+id/notifications_notification_tvMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/notifications_notification_tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#2e2e2e"
+            android:textSize="11dp"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/notifications_notification_ivStatus"
+        android:maxHeight="20dp"
+        android:maxWidth="20dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"/>
+
+</RelativeLayout>

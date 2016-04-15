@@ -17,22 +17,22 @@ import java.util.List;
 /**
  * Created by Hein on 4/15/2016.
  */
-public class GroupsAdapter extends BaseAdapter {
+public class NotificationsAdapter extends BaseAdapter {
 
     private LayoutInflater layoutInflater;
-    private List<GrappGroup> groupsList;
+    private List<GrappNotification> notificationList;
     private Context context;
 
-    public GroupsAdapter(Context context, List<GrappGroup> groupsList) {
+    public NotificationsAdapter(Context context, List<GrappNotification> notificationList) {
         super();
         this.context = context;
         this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.groupsList = groupsList;
+        this.notificationList = notificationList;
     }
 
     @Override
     public int getCount() {
-        return groupsList.size();
+        return notificationList.size();
     }
 
     @Override
@@ -51,29 +51,39 @@ public class GroupsAdapter extends BaseAdapter {
 
         if (convertView == null) {
             viewHolder = new ViewHolder();
-            convertView = layoutInflater.inflate(R.layout.groups_group_layout, parent, false);
-            viewHolder.textInViewHolder = (TextView) convertView.findViewById(R.id.groups_group_textView);
-            viewHolder.imageInViewholder = (ImageView) convertView.findViewById(R.id.groups_group_imageView);
+            convertView = layoutInflater.inflate(R.layout.notifications_notification_layout, parent, false);
+            viewHolder.messageInViewHolder = (TextView) convertView.findViewById(R.id.notifications_notification_tvMessage);
+            viewHolder.dateInViewHolder = (TextView) convertView.findViewById(R.id.notifications_notification_tvDate);
+            viewHolder.imageInViewHolder = (ImageView) convertView.findViewById(R.id.notifications_notification_ivImage);
+            viewHolder.statusInViewHolder = (ImageView) convertView.findViewById(R.id.notifications_notification_ivStatus);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.textInViewHolder.setText(String.valueOf(groupsList.get(position).getGroupName()));
+        viewHolder.messageInViewHolder.setText(String.valueOf(notificationList.get(position).getMessage()));
+        viewHolder.dateInViewHolder.setText(String.valueOf(notificationList.get(position).getDate()));
 
         int imageResourceId = this.context.getResources().getIdentifier(
-                groupsList.get(position).getImageResource(), "drawable", this.context.getPackageName());
+                notificationList.get(position).getImageResource(), "drawable", this.context.getPackageName());
         Bitmap src = BitmapFactory.decodeResource(this.context.getResources(), imageResourceId);
         RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(this.context.getResources(), src);
         drawable.setCircular(true);
+        viewHolder.imageInViewHolder.setImageDrawable(drawable);
 
-        viewHolder.imageInViewholder.setImageDrawable(drawable);
+        if (notificationList.get(position).isSeen()) {
+            viewHolder.statusInViewHolder.setImageResource(R.drawable.ic_lens_black_24dp);
+        } else {
+            viewHolder.statusInViewHolder.setImageResource(R.drawable.ic_panorama_fish_eye_black_24dp);
+        }
 
         return convertView;
     }
 
     static class ViewHolder {
-        TextView textInViewHolder;
-        ImageView imageInViewholder;
+        TextView messageInViewHolder;
+        TextView dateInViewHolder;
+        ImageView imageInViewHolder;
+        ImageView statusInViewHolder;
     }
 }
