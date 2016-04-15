@@ -5,28 +5,36 @@
     android:orientation="horizontal" >
     
     <!-- TODO: put the user interface for one single item of the criminal list view here -->
-    <ImageView
-        android:layout_margin="5dp"
-        android:maxHeight="45dp"
-        android:maxWidth="45dp"
-        android:id="@+id/imageViewCriminal"
-        android:layout_width="45dp"
-        android:layout_height="45dp" />
+        <ImageView
+            android:layout_margin="5dp"
+            android:maxHeight="45dp"
+            android:maxWidth="45dp"
+            android:id="@+id/imageViewCriminal"
+            android:layout_width="45dp"
+       android:layout_height="45dp" />
 
-    <TextView
-        android:id="@+id/textViewCriminalName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        android:textStyle="bold"
-        android:textSize="16dp"/>
 
-    <TextView
-        android:id="@+id/textViewCriminalBounty"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/fab_margin"
-        android:textColor="#efefef"
-        android:textSize="10dp"/>
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textViewCriminalName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:textStyle="bold"
+            android:textSize="16dp"/>
+
+        <TextView
+            android:id="@+id/textViewCriminalBounty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:textColor="#efefef"
+            android:textSize="10dp"/>
+
+    </LinearLayout>
 
 </LinearLayout>
