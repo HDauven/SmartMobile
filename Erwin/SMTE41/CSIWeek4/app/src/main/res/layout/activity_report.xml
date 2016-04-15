@@ -32,7 +32,7 @@
 
     <Button
         style="@style/button"
-        android:id="@+id/SCA_ON"
+        android:id="@+id/btnCsaOn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SCA ON"
@@ -47,13 +47,18 @@
 
     <Button
         style="@style/button"
-        android:id="@+id/SCA_OFF"
+        android:id="@+id/btnCsaOff"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignRight="@id/criminalPicture"
         android:text="SCA OFF"
         android:layout_below="@+id/criminalPicture"
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btnCsaOn"/>
 
     <Button
         android:id="@+id/btnBack"
