@@ -17,22 +17,22 @@ import java.util.List;
 /**
  * Created by Hein on 4/15/2016.
  */
-public class GroupsAdapter extends BaseAdapter {
+public class ChatsAdapter extends BaseAdapter {
 
     private LayoutInflater layoutInflater;
-    private List<GrappGroup> groupsList;
+    private List<GrappChat> chatsList;
     private Context context;
 
-    public GroupsAdapter(Context context, List<GrappGroup> groupsList) {
+    public ChatsAdapter(Context context, List<GrappChat> chatsList) {
         super();
         this.context = context;
         this.layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        this.groupsList = groupsList;
+        this.chatsList = chatsList;
     }
 
     @Override
     public int getCount() {
-        return groupsList.size();
+        return chatsList.size();
     }
 
     @Override
@@ -51,29 +51,32 @@ public class GroupsAdapter extends BaseAdapter {
 
         if (convertView == null) {
             viewHolder = new ViewHolder();
-            convertView = layoutInflater.inflate(R.layout.groups_group_layout, parent, false);
-            viewHolder.textInViewHolder = (TextView) convertView.findViewById(R.id.groups_group_textView);
-            viewHolder.imageInViewholder = (ImageView) convertView.findViewById(R.id.groups_group_imageView);
+            convertView = layoutInflater.inflate(R.layout.chats_chat_layout, parent, false);
+            viewHolder.profileNameInViewHolder = (TextView) convertView.findViewById(R.id.chats_chat_tvProfile);
+            viewHolder.lastMessageInViewHolder = (TextView) convertView.findViewById(R.id.chats_chat_tvLastMessage);
+            viewHolder.profileImageInViewHolder = (ImageView) convertView.findViewById(R.id.chats_chat_ivProfile);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        viewHolder.textInViewHolder.setText(String.valueOf(groupsList.get(position).getGroupName()));
+        viewHolder.profileNameInViewHolder.setText(String.valueOf(chatsList.get(position).getChatName()));
+        viewHolder.lastMessageInViewHolder.setText(String.valueOf(chatsList.get(position).getLastMessage()));
 
         int imageResourceId = this.context.getResources().getIdentifier(
-                groupsList.get(position).getImageResource(), "drawable", this.context.getPackageName());
+                chatsList.get(position).getImageResource(), "drawable", this.context.getPackageName());
         Bitmap src = BitmapFactory.decodeResource(this.context.getResources(), imageResourceId);
         RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(this.context.getResources(), src);
         drawable.setCircular(true);
 
-        viewHolder.imageInViewholder.setImageDrawable(drawable);
+        viewHolder.profileImageInViewHolder.setImageDrawable(drawable);
 
         return convertView;
     }
 
     static class ViewHolder {
-        TextView textInViewHolder;
-        ImageView imageInViewholder;
+        TextView profileNameInViewHolder;
+        TextView lastMessageInViewHolder;
+        ImageView profileImageInViewHolder;
     }
 }
