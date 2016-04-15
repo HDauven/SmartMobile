@@ -21,7 +21,7 @@ import org.w3c.dom.Text;
 
 import java.util.List;
 
-public abstract class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,18 +30,19 @@ public abstract class MainActivity extends AppCompatActivity {
 
         CriminalProvider cp = new CriminalProvider(this);
 
+        Intent i = getIntent();
+        final int chosenCriminalPosition = i.getIntExtra("positionCriminal", -1);
+        Criminal c = cp.GetCriminal(chosenCriminalPosition);
+
         Button b = (Button) findViewById(R.id.btnReport);
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ReportActivity.class);
+                intent.putExtra("positionCriminal", chosenCriminalPosition);
                 startActivity(intent);
             }
         });
-
-        Intent i = getIntent();
-        int chosenCriminalPosition = i.getIntExtra("positionCriminal", -1);
-        Criminal c = cp.GetCriminal(chosenCriminalPosition);
 
         TextView nameText = (TextView) findViewById(R.id.text_name_value);
         nameText.setText(c.name);
