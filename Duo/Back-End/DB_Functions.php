@@ -29,12 +29,12 @@ class DB_Functions {
         $hash = $this->hashSSHA($password);
         $encrypted_password = $hash["encrypted"]; // encrypted password
         $salt = $hash["salt"]; // salt
-        $result = mysqli_query($this->db->con,"INSERT INTO users(user_name, user_email, user_password, salt) VALUES('$name', '$email', '$encrypted_password', '$salt')") or die(mysqli_error($this->db));
+        $result = mysqli_query($this->db->conn,"INSERT INTO users(user_name, user_email, user_password, salt) VALUES('$name', '$email', '$encrypted_password', '$salt')") or die(mysqli_error($this->db));
         // check for result
         if ($result) {
             // getting the details
-            $uid = mysqli_insert_id($this->db->con); // last inserted id
-            $result = mysqli_query($this->db->con,"SELECT * FROM users WHERE user_id = $uid");
+            $uid = mysqli_insert_id($this->db->conn); // last inserted id
+            $result = mysqli_query($this->db->conn,"SELECT * FROM users WHERE user_id = $uid");
             // return details
             return mysqli_fetch_array($result);
         } else {
@@ -46,7 +46,7 @@ class DB_Functions {
      * Get user by email and password
      */
     public function getUserByEmailAndPassword($email, $password) {
-        $result = mysqli_query($this->db->con,"SELECT * FROM users WHERE user_email = '$email'") or die(mysqli_connect_errno());
+        $result = mysqli_query($this->db->conn,"SELECT * FROM users WHERE user_email = '$email'") or die(mysqli_connect_errno());
         // check for result 
         $no_of_rows = mysqli_num_rows($result);
         if ($no_of_rows > 0) {
@@ -67,7 +67,7 @@ class DB_Functions {
      * Check if the user exists or not
      */
     public function doesUserExist($email) {
-        $result = mysqli_query($this->db->con,"SELECT user_email from users WHERE user_email = '$email'");
+        $result = mysqli_query($this->db->conn,"SELECT user_email from users WHERE user_email = '$email'");
         $no_of_rows = mysqli_num_rows($result);
         if ($no_of_rows > 0) {
             // user exists

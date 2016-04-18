@@ -8,7 +8,7 @@ error_reporting(E_ALL ^ E_DEPRECATED);
 
 class DB_Connect
 {
-    public $con; // constructor
+    public $conn; // constructor
 
     function __construct()
     {
@@ -25,17 +25,17 @@ class DB_Connect
         require_once 'db_config.php';
 		
         // connect to mysql
-        $this->con = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_DATABASE) or die(mysqli_error($this->con));
+        $this->conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASSWORD, DB_DATABASE) or die(mysqli_error($this->conn));
         if (mysqli_connect_errno()) {
             die("Database connection failed");
         }
         
-        return $this->con; // return database handler
+        return $this->conn; // return database handler
     }
 
     public function close() // Close the database connection
     {
-        mysqli_close($this->con);
+        mysqli_close($this->conn);
     }
 }
 ?>
