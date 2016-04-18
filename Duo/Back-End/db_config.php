@@ -1,3 +1,8 @@
+/*==============================================================*/
+/*	db_config.php							                    */
+/*	Grapp					  							        */
+/*	by Hein Dauven							                    */
+/*==============================================================*/
 <?php
 // Database connection variables
 define('DB_USER', "root"); // database user
