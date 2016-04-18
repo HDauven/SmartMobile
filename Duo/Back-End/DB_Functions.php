@@ -13,7 +13,7 @@ class DB_Functions {
 
     function __construct() { // constructor
         require_once 'DB_Connect.php';
-        // connecting to database
+        // connect to database
         $this->db = new DB_Connect();
 	$this->db->connect();
     }
@@ -32,7 +32,7 @@ class DB_Functions {
         $result = mysqli_query($this->db->con,"INSERT INTO users(user_name, user_email, user_password, salt) VALUES('$name', '$email', '$encrypted_password', '$salt')") or die(mysqli_error($this->db));
         // check for result
         if ($result) {
-            // gettig the details
+            // getting the details
             $uid = mysqli_insert_id($this->db->con); // last inserted id
             $result = mysqli_query($this->db->con,"SELECT * FROM users WHERE user_id = $uid");
             // return details
@@ -64,22 +64,22 @@ class DB_Functions {
     }
 
     /**
-     * Check user is existed or not
+     * Check if the user exists or not
      */
-    public function isUserExisted($email) {
+    public function doesUserExist($email) {
         $result = mysqli_query($this->db->con,"SELECT user_email from users WHERE user_email = '$email'");
         $no_of_rows = mysqli_num_rows($result);
         if ($no_of_rows > 0) {
-            // user exist
+            // user exists
             return true;
         } else {
-            // user not exist
+            // user does not exist
             return false;
         }
     }
 
     /**
-     * Encrypting password
+     * Encrypt password
      * @param password
      * returns salt and encrypted password
      */
@@ -93,7 +93,7 @@ class DB_Functions {
     }
 
     /**
-     * Decrypting password
+     * Decrypt password
      * @param salt, password
      * returns hash string
      */
