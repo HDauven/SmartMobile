@@ -1,9 +1,7 @@
-/*==============================================================*/
-/*	DB_Connect.php							                    */
-/*	Grapp					  							        */
-/*	by Hein Dauven							                    */
-/*==============================================================*/
 <?php
+//	DB_connect.php
+//	Grapp
+//	by Hein Dauven
 class DB_Connect {
     public $conn; // constructor
     

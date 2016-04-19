@@ -1,11 +1,9 @@
-/*==============================================================*/
-/*	DB_Functions.php						                    */
-/*	Grapp					  							        */
-/*	by Hein Dauven							                    */
-/*==============================================================*/
+<?php
+//	DB_Functions.php
+//	Grapp
+//	by Hein Dauven
 // Database handler class; contains code and queries to insert, 
 // update and retrieve data from the database.
-<?php
 class DB_Functions {
 
 	private $conn;

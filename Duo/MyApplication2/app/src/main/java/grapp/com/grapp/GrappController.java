@@ -14,10 +14,12 @@ import com.android.volley.toolbox.Volley;
  * Class serves as a singleton.
  */
 public class GrappController extends Application {
-    // TAG string equals the simple version of this classes name.
-    public static final String TAG = GrappController.class.getSimpleName();
+    // LogCat TAG
+    private static final String TAG = GrappController.class.getSimpleName();
+
     // Instance of the class itself.
     private static GrappController instance;
+
     // Volley request dispatcher.
     private RequestQueue requestQueue;
 

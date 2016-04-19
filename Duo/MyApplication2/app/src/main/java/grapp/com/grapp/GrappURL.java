@@ -5,5 +5,6 @@ package grapp.com.grapp;
  * Class that holds URLs, as used by the application.
  */
 public class GrappURL {
-    public static String API_URL = "http://dauven.nl/grapp/";
+    public static String API_URL_REGISTER = "http://dauven.nl/grapp/Register.php";
+    public static String API_URL_LOGIN = "http://dauven.nl/grapp/Login.php";
 }

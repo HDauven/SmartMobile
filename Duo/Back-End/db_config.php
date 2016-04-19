@@ -1,9 +1,7 @@
-/*==============================================================*/
-/*	db_config.php							                    */
-/*	Grapp					  							        */
-/*	by Hein Dauven							                    */
-/*==============================================================*/
 <?php
+//	db_config.php
+//	Grapp
+//	by Hein Dauven
 // Database connection variables
 define('DB_USER', "heindnq176_grapp"); // database user
 define('DB_PASSWORD', "T4kZ9Biufzbvc5KXYUSy"); // database password
