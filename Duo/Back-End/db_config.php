@@ -5,8 +5,8 @@
 /*==============================================================*/
 <?php
 // Database connection variables
-define('DB_USER', "root"); // database user
-define('DB_PASSWORD', "root"); // database password
-define('DB_DATABASE', "startingandroid_db"); // database name
-define('DB_SERVER', "localhost"); // database server
+define('DB_USER', "heindnq176_grapp"); // database user
+define('DB_PASSWORD', "T4kZ9Biufzbvc5KXYUSy"); // database password
+define('DB_DATABASE', "heindnq176_grapp"); // database name
+define('DB_SERVER', "http://185.13.227.213:3306/"); // database server
 ?>
