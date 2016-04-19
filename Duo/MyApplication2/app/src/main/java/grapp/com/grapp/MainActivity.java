@@ -1,5 +1,6 @@
 package grapp.com.grapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -16,12 +17,17 @@ public class MainActivity extends AppCompatActivity {
     NavigationView mNavigationView;
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
+    private SessionManager sessionManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
+        // Create a new SessionManager
+        sessionManager = new SessionManager(this);
+        if (!sessionManager.getLoggedIn()) {
+            logoutUser();
+        }
 
         // Setup the DrawerLayout and NavigationView.
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -52,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
                     FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.containerView, new ProfileFragment()).commit();
                 }
+
+                if (menuItem.getItemId() == R.id.nav_item_logout) {
+                    logoutUser();
+                }
                 return false;
             }
         });
@@ -62,5 +72,11 @@ public class MainActivity extends AppCompatActivity {
                 R.string.app_name, R.string.app_name);
         mDrawerLayout.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
+    }
+
+    private void logoutUser() {
+        sessionManager.setLogin(false);
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 }
