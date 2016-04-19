@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/chats_chat_ivProfile"
+        android:layout_margin="10dp"
+        android:maxHeight="60dp"
+        android:maxWidth="60dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="20dp">
+
+        <TextView
+            android:id="@+id/chats_chat_tvProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="16dp"/>
+
+        <TextView
+            android:id="@+id/chats_chat_tvLastMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#2e2e2e"
+            android:textSize="13dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
