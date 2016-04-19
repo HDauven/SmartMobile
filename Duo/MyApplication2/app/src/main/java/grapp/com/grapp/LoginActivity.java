@@ -19,6 +19,9 @@ import com.android.volley.toolbox.StringRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Hein on 4/19/2016.
  */
@@ -103,9 +106,24 @@ public class LoginActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                hideDialog();
             }
-        })
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                // Post params to login url
+                Map<String, String> params = new HashMap<>();
+                params.put("tag", "login");
+                params.put("email", email);
+                params.put("password", password);
+
+                return params;
+            }
+        };
+
+        // Adding request to the queue
+        GrappController.getInstance().addToRequestQueue(stringRequest, tag_string_request);
     }
 
     private void showDialog() {
