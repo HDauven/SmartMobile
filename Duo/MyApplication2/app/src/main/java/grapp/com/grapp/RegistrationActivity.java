@@ -25,10 +25,11 @@ import java.util.Map;
 /**
  * Created by Hein on 4/19/2016.
  */
-public class LoginActivity extends AppCompatActivity {
+public class RegistrationActivity extends AppCompatActivity {
 
-    private Button registrationButton;
-    private Button loginButton;
+    private Button registerButton;
+    private Button backButton;
+    private EditText fullNameText;
     private EditText emailText;
     private EditText passwordText;
     private ProgressDialog progressDialog;
@@ -37,45 +38,54 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_registration);
 
         sessionManager = new SessionManager(this);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
 
-        emailText = (EditText) findViewById(R.id.email_text_login);
-        passwordText = (EditText) findViewById(R.id.password_text_login);
+        if (sessionManager.getLoggedIn()) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
 
-        registrationButton = (Button) findViewById(R.id.registration_button);
-        registrationButton.setOnClickListener(new View.OnClickListener() {
+        fullNameText = (EditText) findViewById(R.id.full_name_text_register);
+        emailText = (EditText) findViewById(R.id.email_text_register);
+        passwordText = (EditText) findViewById(R.id.password_text_register);
+
+        registerButton = (Button) findViewById(R.id.register_button);
+        registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), RegistrationActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        loginButton = (Button) findViewById(R.id.sign_in_button);
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                String name = fullNameText.getText().toString();
                 String email = emailText.getText().toString();
                 String password = passwordText.getText().toString();
 
-                if (email.trim().length() > 0 && password.trim().length() > 0) {
-                    checkLogin(email, password);
+                if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
+                    registerUser(name, email, password);
                 } else {
-                    Snackbar.make(view, "Please, enter your credentials.", Snackbar.LENGTH_LONG).show();
+                    Snackbar.make(view, "Please enter all fields.", Snackbar.LENGTH_LONG).show();
                 }
+            }
+        });
+
+        backButton = (Button) findViewById(R.id.register_back_button);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
+                startActivity(intent);
             }
         });
     }
 
-    private void checkLogin(final String email, final String password) {
-        String tag_string_request = "request_login";
+    private void registerUser(final String name, final String email, final String password) {
+        // Tag that is used to cancel the request
+        String tag_string_request = "request_register";
 
-        progressDialog.setMessage("Logging in");
+        progressDialog.setMessage("Registering account");
         showDialog();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
@@ -85,16 +95,15 @@ public class LoginActivity extends AppCompatActivity {
                 hideDialog();
 
                 try {
-                    JSONObject jUserId = new JSONObject(response);
-                    String userId = jUserId.getString("user_id");
-                    if (userId != null) {
-                        sessionManager.setLogin(true);
-                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    JSONObject jRegistration = new JSONObject(response);
+                    boolean error = jRegistration.getBoolean("error");
+                    if (!error) {
+                        Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
                         startActivity(intent);
                         finish();
                     } else {
-                        String errorMsg = jUserId.getString("error_msg");
-                        Toast.makeText(getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
+                        String errorMessage = jRegistration.getString("error_msg");
+                        Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -109,29 +118,26 @@ public class LoginActivity extends AppCompatActivity {
         }) {
             @Override
             protected Map<String, String> getParams() {
-                // Post params to login url
+                // Posting params to register url
                 Map<String, String> params = new HashMap<>();
-                params.put("tag", "login");
+                params.put("tag", "register");
+                params.put("name", name);
                 params.put("email", email);
                 params.put("password", password);
 
                 return params;
             }
         };
-
-        // Adding request to the queue
         GrappController.getInstance().addToRequestQueue(stringRequest, tag_string_request);
     }
 
     private void showDialog() {
-        if (!progressDialog.isShowing()) {
+        if (!progressDialog.isShowing())
             progressDialog.show();
-        }
     }
 
     private void hideDialog() {
-        if (progressDialog.isShowing()) {
+        if (progressDialog.isShowing())
             progressDialog.dismiss();
-        }
     }
 }

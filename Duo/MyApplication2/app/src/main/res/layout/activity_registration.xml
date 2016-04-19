@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal"
-    android:orientation="vertical"
-    tools:context="com.startingandroid.registrationandlogin.LoginActivity">
+    android:orientation="vertical">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -37,7 +34,7 @@
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/fields_container"
+                android:id="@+id/edit_text_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -46,12 +43,27 @@
                 android:padding="10dp">
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/email_layout"
+                    android:id="@+id/full_name_register_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/email_text_login"
+                        android:id="@+id/full_name_text_register"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Full Name"
+                        android:inputType="text"
+                        android:singleLine="true" />
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/email_register_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/email_text_register"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="Email"
@@ -61,53 +73,54 @@
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
-                    android:id="@+id/password_layout"
+                    android:id="@+id/password_register_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <EditText
-                        android:id="@+id/password_text_login"
+                        android:id="@+id/password_text_register"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="password"
                         android:inputType="textPassword"
                         android:singleLine="true" />
 
+
                 </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
 
             <Button
-                android:id="@+id/sign_in_button"
+                android:id="@+id/register_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="40dp"
                 android:background="@color/material_blue_grey_800"
-                android:text="Sign In"
+                android:text="Register"
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/tv_sign_in"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
-                android:text="Don't have an account yet?"
+                android:text="Already have an account? Sign In"
                 android:textColor="#2c3e50"
-                android:textSize="20sp"
                 android:textStyle="bold" />
 
             <Button
-                android:id="@+id/registration_button"
+                android:id="@+id/register_back_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginTop="20dp"
                 android:background="@color/material_blue_grey_800"
-                android:text="Register"
+                android:text="Back"
                 android:textColor="#ffffff"
                 android:textSize="18sp" />
 
