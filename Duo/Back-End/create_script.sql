@@ -14,9 +14,12 @@ drop table users;
 /*	CREATE STATEMENTS											*/
 /*==============================================================*/
 create table users(
-	user_id int(11) primary key auto_increment,
-   user_name varchar(50) not null,
-   user_email varchar(100) not null unique,
-   user__password varchar(80) not null,
-   _tc timestamp
+	id int(11) primary key auto_increment,
+	unique_id varchar(23) not null unique,
+	name varchar(50) not null,
+	email varchar(100) not null unique,
+	encrypted__password varchar(80) not null,
+	salt varchar(10) not null,
+	created_at datetime,
+	updated_at datetime null
 ); 

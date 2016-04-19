@@ -6,16 +6,15 @@
 // Database handler class; contains code and queries to insert, 
 // update and retrieve data from the database.
 <?php
-error_reporting(E_ALL ^ E_DEPRECATED);
 class DB_Functions {
 
-    private $db;
+	private $conn;
 
     function __construct() { // constructor
         require_once 'DB_Connect.php';
         // connect to database
-        $this->db = new DB_Connect();
-	$this->db->connect();
+        $db = new DB_Connect();
+		$this->conn = $db->connect();
     }
 
     function __destruct() { // destructor
@@ -26,17 +25,27 @@ class DB_Functions {
      * Store user details
      */
     public function storeUser($name, $email, $password) {
+		$uuid = uniqid('', true);
         $hash = $this->hashSSHA($password);
         $encrypted_password = $hash["encrypted"]; // encrypted password
         $salt = $hash["salt"]; // salt
-        $result = mysqli_query($this->db->conn,"INSERT INTO users(user_name, user_email, user_password, salt) VALUES('$name', '$email', '$encrypted_password', '$salt')") or die(mysqli_error($this->db));
+		
+		$stmt = $this->conn->prepare("INSERT INTO users(unique_id, name, email, encrypted_password, salt, created_at) VALUES(?, ?, ?, ?, ?, NOW())");
+		$stmt->bind_param("sssss", $uuid, $name, $email, $encrypted_password, $salt);
+		$result = $stmt->execute();
+		$stmt->close();
+		
         // check for result
         if ($result) {
             // getting the details
-            $uid = mysqli_insert_id($this->db->conn); // last inserted id
-            $result = mysqli_query($this->db->conn,"SELECT * FROM users WHERE user_id = $uid");
+            $stmt = $this->conn->prepare("SELECT * FROM users WHERE email = ?");
+			$stmt->bind_param("s", $email);
+			$stmt->execute();
+			$user = $stmt->get_result()->fetch_assoc();
+			$stmt->close();
+			
             // return details
-            return mysqli_fetch_array($result);
+            return $user;
         } else {
             return false;
         }
@@ -46,20 +55,25 @@ class DB_Functions {
      * Get user by email and password
      */
     public function getUserByEmailAndPassword($email, $password) {
-        $result = mysqli_query($this->db->conn,"SELECT * FROM users WHERE user_email = '$email'") or die(mysqli_connect_errno());
+		$stmt = $this->conn->prepare("SELECT * FROM users WHERE email = ?");
+		$stmt->bind_param("s", $email);
+		
         // check for result 
-        $no_of_rows = mysqli_num_rows($result);
-        if ($no_of_rows > 0) {
-            $result = mysqli_fetch_array($result);
-            $salt = $result['salt'];
-            $encrypted_password = $result['user_password'];
+        if ($stmt->execute()) {
+            $user = $stmt->get_result()->fetch_assoc();
+			$stmt->close();
+			
+			// verifying the users password
+            $salt = $user['salt'];
+            $encrypted_password = $user['encrypted_password'];
             $hash = $this->checkhashSSHA($salt, $password);
-            // check for password
+            // check if password is equal
             if ($encrypted_password == $hash) {
-                return $result;
+				// user authentication is succesful
+                return $user;
             }
         } else {
-            return false;
+            return NULL;
         }
     }
 
@@ -67,13 +81,18 @@ class DB_Functions {
      * Check if the user exists or not
      */
     public function doesUserExist($email) {
-        $result = mysqli_query($this->db->conn,"SELECT user_email from users WHERE user_email = '$email'");
-        $no_of_rows = mysqli_num_rows($result);
-        if ($no_of_rows > 0) {
+		$stmt = $this->conn->prepare("SELECt email FROM users WHERE email = ?");
+		$stmt->bind_param("s", $email);
+		$stmt->execute();
+		$stmt->store_result();
+		
+        if ($stmt->num_rows > 0) {
             // user exists
+			$stmt->close();
             return true;
         } else {
             // user does not exist
+			$stmt->close();
             return false;
         }
     }
@@ -84,7 +103,6 @@ class DB_Functions {
      * returns salt and encrypted password
      */
     public function hashSSHA($password) {
-
         $salt = sha1(rand());
         $salt = substr($salt, 0, 10);
         $encrypted = base64_encode(sha1($password . $salt, true) . $salt);
@@ -98,7 +116,6 @@ class DB_Functions {
      * returns hash string
      */
     public function checkhashSSHA($salt, $password) {
-
         $hash = base64_encode(sha1($password . $salt, true) . $salt);
 
         return $hash;
