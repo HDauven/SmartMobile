@@ -2,9 +2,9 @@ package grapp.com.grapp;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -12,16 +12,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Hein on 4/19/2016.
@@ -38,6 +36,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private ProgressDialog progressDialog;
     private SessionManager sessionManager;
     private SQLiteHandler internalDatabase;
+    JSONParser jsonParser = new JSONParser();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,12 +68,7 @@ public class RegistrationActivity extends AppCompatActivity {
                 String name = fullNameText.getText().toString().trim();
                 String email = emailText.getText().toString().trim();
                 String password = passwordText.getText().toString().trim();
-
-                if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
-                    registerUser(name, email, password);
-                } else {
-                    Snackbar.make(view, "Please enter all fields.", Snackbar.LENGTH_LONG).show();
-                }
+                new CreateUser().execute(name, email, password);
             }
         });
 
@@ -88,78 +82,65 @@ public class RegistrationActivity extends AppCompatActivity {
         });
     }
 
-    private void registerUser(final String name, final String email, final String password) {
-        // Tag that is used to cancel the request
-        String tag_string_request = "request_register";
+    private class CreateUser extends AsyncTask<String, String, String> {
 
-        progressDialog.setMessage("Registering account");
-        showDialog();
+        boolean failure = false;
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                GrappURL.API_URL_REGISTER, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Log.d(TAG, "Register Response: " + response.toString());
-                hideDialog();
-
-                try {
-                    JSONObject jObj = new JSONObject(response);
-                    boolean error = jObj.getBoolean("error");
-                    if (!error) { // User is successfully added to the MySQL database
-                        // First, store the user in the SQLite database
-                        String uid = jObj.getString("uid");
-
-                        JSONObject user = jObj.getJSONObject("user");
-                        String name = user.getString("name");
-                        String email = user.getString("email");
-                        String created_at = user.getString("created_at");
-
-                        // Insert user into the internal database
-                        internalDatabase.addUser(name, email, uid, created_at);
-
-                        Toast.makeText(getApplicationContext(), "User is succesfully registered.", Toast.LENGTH_LONG).show();
-
-                        // Redirect user to the LoginActivity
-                        Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                        finish();
-                    } else {
-                        String errorMessage = jObj.getString("error_msg");
-                        Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_LONG).show();
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Registration Error: " + error.getMessage());
-                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-                hideDialog();
-            }
-        }) {
-            @Override
-            protected Map<String, String> getParams() {
-                // Post parameters to register url
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("name", name);
-                params.put("email", email);
-                params.put("password", password);
-
-                return params;
-            }
-        };
-        GrappController.getInstance().addToRequestQueue(stringRequest, tag_string_request);
-    }
-
-    private void showDialog() {
-        if (!progressDialog.isShowing())
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressDialog = new ProgressDialog(RegistrationActivity.this);
+            progressDialog.setMessage("Creating User");
+            progressDialog.setIndeterminate(false);
+            progressDialog.setCancelable(true);
             progressDialog.show();
-    }
+        }
 
-    private void hideDialog() {
-        if (progressDialog.isShowing())
+        @Override
+        protected String doInBackground(String... arguments) {
+            int success;
+            String username = arguments[0];
+            String email = arguments[1];
+            String password = arguments[2];
+            try {
+                // Building parameters
+                List<NameValuePair> parameters = new ArrayList<>();
+                parameters.add(new BasicNameValuePair("username", username));
+                parameters.add(new BasicNameValuePair("email", email));
+                parameters.add(new BasicNameValuePair("password", password));
+                Log.d("request", "starting");
+                // Make the HTTP request
+                JSONObject json = jsonParser.makeHttpRequest(GrappURL.API_URL_REGISTER, "POST", parameters);
+                // Check the log for a JSON response
+                Log.d("User create attempt", json.toString());
+                // JSON success tag
+                success = json.getInt(GrappURL.TAG_SUCCESS);
+                if (success == 1) {
+                    Log.d("User created", json.toString());
+
+                    // Insert user into the internal database
+                    internalDatabase.addUser(username, email, new Date().toString());
+
+                    Intent i = new Intent(RegistrationActivity.this, MainActivity.class);
+                    finish();
+                    startActivity(i);
+                    return json.getString(GrappURL.TAG_MESSAGE);
+                } else {
+                    Log.d("User creation failed", json.getString(GrappURL.TAG_MESSAGE));
+                    return json.getString(GrappURL.TAG_MESSAGE);
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(String url) {
             progressDialog.dismiss();
+            if (url != null) {
+                Toast.makeText(RegistrationActivity.this, url, Toast.LENGTH_LONG).show();
+            }
+        }
     }
 }
