@@ -11,23 +11,34 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import java.util.HashMap;
+
 public class MainActivity extends AppCompatActivity {
 
     DrawerLayout mDrawerLayout;
     NavigationView mNavigationView;
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
+
     private SessionManager sessionManager;
+    private SQLiteHandler internalDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        // Create a new SessionManager
+
+        internalDatabase = new SQLiteHandler(getApplicationContext());
         sessionManager = new SessionManager(this);
         if (!sessionManager.getLoggedIn()) {
             logoutUser();
         }
+
+        // Fetching user details from sqlite
+        HashMap<String, String> user = internalDatabase.getUserDetails();
+
+        String name = user.get("name");
+        String email = user.get("email");
 
         // Setup the DrawerLayout and NavigationView.
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -76,7 +87,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void logoutUser() {
         sessionManager.setLogin(false);
+        internalDatabase.deleteUsers();
+
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 }

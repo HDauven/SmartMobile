@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +27,8 @@ import java.util.Map;
  * Created by Hein on 4/19/2016.
  */
 public class RegistrationActivity extends AppCompatActivity {
+    // LogCat TAG
+    private static final String TAG = RegistrationActivity.class.getSimpleName();
 
     private Button registerButton;
     private Button backButton;
@@ -34,6 +37,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText passwordText;
     private ProgressDialog progressDialog;
     private SessionManager sessionManager;
+    private SQLiteHandler internalDatabase;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,12 +45,15 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
 
         sessionManager = new SessionManager(this);
+        internalDatabase = new SQLiteHandler(getApplicationContext());
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
 
+        // Check if the user is already logged into Grapp
         if (sessionManager.getLoggedIn()) {
-            Intent intent = new Intent(this, MainActivity.class);
+            // User is already logged in, redirect to the MainActivity
+            Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
             startActivity(intent);
             finish();
         }
@@ -59,9 +66,9 @@ public class RegistrationActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = fullNameText.getText().toString();
-                String email = emailText.getText().toString();
-                String password = passwordText.getText().toString();
+                String name = fullNameText.getText().toString().trim();
+                String email = emailText.getText().toString().trim();
+                String password = passwordText.getText().toString().trim();
 
                 if (!name.isEmpty() && !email.isEmpty() && !password.isEmpty()) {
                     registerUser(name, email, password);
@@ -89,20 +96,35 @@ public class RegistrationActivity extends AppCompatActivity {
         showDialog();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                GrappURL.API_URL, new Response.Listener<String>() {
+                GrappURL.API_URL_REGISTER, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Log.d(TAG, "Register Response: " + response.toString());
                 hideDialog();
 
                 try {
-                    JSONObject jRegistration = new JSONObject(response);
-                    boolean error = jRegistration.getBoolean("error");
-                    if (!error) {
+                    JSONObject jObj = new JSONObject(response);
+                    boolean error = jObj.getBoolean("error");
+                    if (!error) { // User is successfully added to the MySQL database
+                        // First, store the user in the SQLite database
+                        String uid = jObj.getString("uid");
+
+                        JSONObject user = jObj.getJSONObject("user");
+                        String name = user.getString("name");
+                        String email = user.getString("email");
+                        String created_at = user.getString("created_at");
+
+                        // Insert user into the internal database
+                        internalDatabase.addUser(name, email, uid, created_at);
+
+                        Toast.makeText(getApplicationContext(), "User is succesfully registered.", Toast.LENGTH_LONG).show();
+
+                        // Redirect user to the LoginActivity
                         Intent intent = new Intent(RegistrationActivity.this, LoginActivity.class);
                         startActivity(intent);
                         finish();
                     } else {
-                        String errorMessage = jRegistration.getString("error_msg");
+                        String errorMessage = jObj.getString("error_msg");
                         Toast.makeText(getApplicationContext(), errorMessage, Toast.LENGTH_LONG).show();
                     }
                 } catch (JSONException e) {
@@ -112,15 +134,15 @@ public class RegistrationActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Registration Error: " + error.getMessage());
                 Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                 hideDialog();
             }
         }) {
             @Override
             protected Map<String, String> getParams() {
-                // Posting params to register url
-                Map<String, String> params = new HashMap<>();
-                params.put("tag", "register");
+                // Post parameters to register url
+                Map<String, String> params = new HashMap<String, String>();
                 params.put("name", name);
                 params.put("email", email);
                 params.put("password", password);
