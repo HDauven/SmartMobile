@@ -1,5 +1,6 @@
 package grapp.com.grapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
@@ -10,6 +11,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
+import java.util.HashMap;
+
 public class MainActivity extends AppCompatActivity {
 
     DrawerLayout mDrawerLayout;
@@ -17,11 +20,25 @@ public class MainActivity extends AppCompatActivity {
     FragmentManager mFragmentManager;
     FragmentTransaction mFragmentTransaction;
 
+    private SessionManager sessionManager;
+    private SQLiteHandler internalDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
+
+        internalDatabase = new SQLiteHandler(getApplicationContext());
+        sessionManager = new SessionManager(this);
+        if (!sessionManager.getLoggedIn()) {
+            logoutUser();
+        }
+
+        // Fetching user details from sqlite
+        HashMap<String, String> user = internalDatabase.getUserDetails();
+
+        String name = user.get("name");
+        String email = user.get("email");
 
         // Setup the DrawerLayout and NavigationView.
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
@@ -52,6 +69,10 @@ public class MainActivity extends AppCompatActivity {
                     FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
                     fragmentTransaction.replace(R.id.containerView, new ProfileFragment()).commit();
                 }
+
+                if (menuItem.getItemId() == R.id.nav_item_logout) {
+                    logoutUser();
+                }
                 return false;
             }
         });
@@ -62,5 +83,14 @@ public class MainActivity extends AppCompatActivity {
                 R.string.app_name, R.string.app_name);
         mDrawerLayout.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
+    }
+
+    private void logoutUser() {
+        sessionManager.setLogin(false);
+        internalDatabase.deleteUsers();
+
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
