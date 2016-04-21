@@ -9,19 +9,23 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.List;
+
+import grapp.com.grapp.model.GrappContact;
 
 /**
  * Created by Erwin on 15-4-2016.
  */
 
 @SuppressLint("InflateParams")
-public class ContactsAdapter extends ArrayAdapter<String> {
+public class ContactsAdapter extends ArrayAdapter<GrappContact> {
 
     private Context context;
-    private List<String> contacts;
+    public List<GrappContact> contacts;
 
-    public ContactsAdapter(Context context, List<String> contacts) {
+    public ContactsAdapter(Context context, List<GrappContact> contacts) {
         super(context, R.layout.contact_list_item, contacts);
 
         this.context = context;
@@ -31,7 +35,7 @@ public class ContactsAdapter extends ArrayAdapter<String> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        String requestedName = contacts.get(position);
+        GrappContact requestedContact = contacts.get(position);
 
         View nameView = convertView;
 
@@ -41,7 +45,10 @@ public class ContactsAdapter extends ArrayAdapter<String> {
         }
 
         TextView name = (TextView) nameView.findViewById(R.id.contact_name);
-        name.setText(requestedName);
+        name.setText(requestedContact.Name);
+
+        TextView distance = (TextView) nameView.findViewById(R.id.contact_distance);
+        distance.setText(String.format("%.1f km", (requestedContact.Distance/1000)));
 
         return nameView;
     }
