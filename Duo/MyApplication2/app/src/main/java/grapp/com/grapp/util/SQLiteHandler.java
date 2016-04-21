@@ -1,4 +1,4 @@
-package grapp.com.grapp;
+package grapp.com.grapp.util;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -57,7 +57,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     /**
      * Storing user details in the database
-     * */
+     */
     public void addUser(String name, String email, String created_at) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -75,7 +75,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     /**
      * Getting user data from database
-     * */
+     */
     public HashMap<String, String> getUserDetails() {
         HashMap<String, String> user = new HashMap<String, String>();
         String selectQuery = "SELECT  * FROM " + TABLE_USER;
@@ -98,7 +98,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 
     /**
      * Recreate database; Delete all tables and create them again
-     * */
+     */
     public void deleteUsers() {
         SQLiteDatabase db = this.getWritableDatabase();
         // Delete All Rows

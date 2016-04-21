@@ -14,6 +14,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import grapp.com.grapp.model.GrappGroup;
+
 /**
  * Created by Hein on 4/15/2016.
  */

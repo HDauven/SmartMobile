@@ -1,4 +1,4 @@
-package grapp.com.grapp;
+package grapp.com.grapp.model;
 
 /**
  * Created by Hein on 4/15/2016.

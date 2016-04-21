@@ -1,4 +1,4 @@
-package grapp.com.grapp;
+package grapp.com.grapp.model;
 
 import java.util.Date;
 
