@@ -11,7 +11,8 @@ if (!empty($_POST)) {
                 username,
                 password,
                 email,
-                created_at
+                created_at,
+                salt
             FROM users
             WHERE
                 email = :email
@@ -43,8 +44,10 @@ if (!empty($_POST)) {
     $row = $stmt->fetch();
     if ($row) {
         //if we encrypted the password, we would unencrypt it here, but in our case we just
+        $salt = $row['salt'];
+        $hash = base64_encode(sha1($_POST['password'] . $salt, true) . $salt);
         //compare the two passwords
-        if ($_POST['password'] === $row['password']) {
+        if ($row['password'] === $hash) {
             $login_ok = true;
             $response["id"] = $row['id'];
             $response["username"] = $row['username'];

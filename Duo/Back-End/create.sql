@@ -3,7 +3,8 @@ CREATE TABLE users (
   username   VARCHAR(64)  NOT NULL,
   password   VARCHAR(256) NOT NULL,
   email      VARCHAR(100) NOT NULL UNIQUE,
-  created_at DATETIME
+  created_at DATETIME,
+  salt       VARCHAR(10)  NOT NULL
 );
 
 CREATE TABLE comments (
