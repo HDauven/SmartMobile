@@ -18,7 +18,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -117,9 +116,10 @@ public class RegistrationActivity extends AppCompatActivity {
                 success = json.getInt(GrappURL.TAG_SUCCESS);
                 if (success == 1) {
                     Log.d("User created", json.toString());
+                    sessionManager.setLogin(true);
 
                     // Insert user into the internal database
-                    internalDatabase.addUser(username, email, new Date().toString());
+                    internalDatabase.addUser(username, email, json.getString("created_at"));
 
                     Intent i = new Intent(RegistrationActivity.this, MainActivity.class);
                     finish();

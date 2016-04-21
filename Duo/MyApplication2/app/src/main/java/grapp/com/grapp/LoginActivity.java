@@ -18,7 +18,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -97,12 +96,12 @@ public class LoginActivity extends AppCompatActivity {
         @Override
         protected String doInBackground(String... arguments) {
             int success;
-            String username = arguments[0];
+            String email = arguments[0];
             String password = arguments[1];
             try {
                 // Building parameters
                 List<NameValuePair> parameters = new ArrayList<>();
-                parameters.add(new BasicNameValuePair("username", username));
+                parameters.add(new BasicNameValuePair("email", email));
                 parameters.add(new BasicNameValuePair("password", password));
                 Log.d("request", "starting");
                 // Make the HTTP request
@@ -114,8 +113,11 @@ public class LoginActivity extends AppCompatActivity {
                 if (success == 1) {
                     Log.d("Login successful", json.toString());
                     sessionManager.setLogin(true);
+
                     // Inserting a row in the users table
-                    internalDatabase.addUser(username, username, new Date().toString());
+                    internalDatabase.addUser(json.getString("username"),
+                            json.getString("email"), json.getString("created_at"));
+
                     Intent i = new Intent(LoginActivity.this, MainActivity.class);
                     finish();
                     startActivity(i);

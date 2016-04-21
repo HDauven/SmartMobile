@@ -4,19 +4,21 @@
 require("config.inc.php");
 
 if (!empty($_POST)) {
-    //gets user's info based off of a username.
+    //gets user's info based off of an email address.
     $query = "
             SELECT
                 id,
                 username,
-                password
+                password,
+                email,
+                created_at
             FROM users
             WHERE
-                username = :username
+                email = :email
         ";
 
     $query_params = array(
-        ':username' => $_POST['username']
+        ':email' => $_POST['email']
     );
 
     try {
@@ -44,6 +46,10 @@ if (!empty($_POST)) {
         //compare the two passwords
         if ($_POST['password'] === $row['password']) {
             $login_ok = true;
+            $response["id"] = $row['id'];
+            $response["username"] = $row['username'];
+            $response["email"] = $row['email'];
+            $response["created_at"] = $row['created_at'];
         }
     }
 
@@ -63,7 +69,7 @@ if (!empty($_POST)) {
     <h1>Login</h1>
     <form action="login.php" method="post">
         Username:<br/>
-        <input type="text" name="username" placeholder="username"/>
+        <input type="text" name="email" placeholder="email"/>
         <br/><br/>
         Password:<br/>
         <input type="password" name="password" placeholder="password" value=""/>
