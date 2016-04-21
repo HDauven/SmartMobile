@@ -1,7 +1,9 @@
 CREATE TABLE users (
-  id       INT(11) PRIMARY KEY AUTO_INCREMENT,
-  username VARCHAR(64)  NOT NULL UNIQUE,
-  password VARCHAR(256) NOT NULL
+  id         INT(11) PRIMARY KEY AUTO_INCREMENT,
+  username   VARCHAR(64)  NOT NULL,
+  password   VARCHAR(256) NOT NULL,
+  email      VARCHAR(100) NOT NULL UNIQUE,
+  created_at DATETIME
 );
 
 CREATE TABLE comments (

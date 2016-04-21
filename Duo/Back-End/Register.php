@@ -16,12 +16,12 @@ if (!empty($_POST)) {
     //displaying an error message within the form instead.
     //We could also do front-end form validation from within our Android App,
     //but it is good to have a have the back-end code do a double check.
-    if (empty($_POST['username']) || empty($_POST['password'])) {
+    if (empty($_POST['username']) || empty($_POST['password'] || empty($_POST['email']))) {
 
 
         // Create some data that will be the JSON response
         $response["success"] = 0;
-        $response["message"] = "Please Enter Both a Username and Password.";
+        $response["message"] = "Please enter a full name, password and email.";
 
         //die will kill the page and not execute any code below, it will also
         //display the parameter... in this case the JSON data our Android
@@ -30,13 +30,13 @@ if (!empty($_POST)) {
     }
 
     //if the page hasn't died, we will check with our database to see if there is
-    //already a user with the username specificed in the form.  ":user" is just
+    //already a user with the username specified in the form.  ":user" is just
     //a blank variable that we will change before we execute the query.  We
     //do it this way to increase security, and defend against sql injections
-    $query = " SELECT 1 FROM users WHERE username = :user";
+    $query = " SELECT 1 FROM users WHERE email = :email";
     //now lets update what :user should be
     $query_params = array(
-        ':user' => $_POST['username']
+        ':email' => $_POST['email']
     );
 
     //Now let's make run the query:
@@ -50,7 +50,7 @@ if (!empty($_POST)) {
 
         //or just use this use this one to product JSON data:
         $response["success"] = 0;
-        $response["message"] = "Database Error1. Please Try Again!";
+        $response["message"] = "Database Error 1. Please Try Again!";
         die(json_encode($response));
     }
 
@@ -71,12 +71,13 @@ if (!empty($_POST)) {
     //If we have made it here without dying, then we are in the clear to
     //create a new user.  Let's setup our new query to create a user.
     //Again, to protect against sql injects, user tokens such as :user and :pass
-    $query = "INSERT INTO users ( username, password ) VALUES ( :user, :pass ) ";
+    $query = "INSERT INTO users ( username, password, email, created_at ) VALUES ( :user, :pass, :email, NOW())";
 
     //Again, we need to update our tokens with the actual data:
     $query_params = array(
         ':user' => $_POST['username'],
-        ':pass' => $_POST['password']
+        ':pass' => $_POST['password'],
+        ':email' => $_POST['email']
     );
 
     //time to run our query, and create the user
@@ -89,8 +90,28 @@ if (!empty($_POST)) {
 
         //or just use this use this one:
         $response["success"] = 0;
-        $response["message"] = "Database Error2. Please Try Again!";
+        $response["message"] = "Database Error 2. Please Try Again!";
         die(json_encode($response));
+    }
+
+    $query = "SELECT created_at FROM users WHERE email = :email";
+
+    $query_params = array(
+        ':email' => $_POST['email']
+    );
+
+    try {
+        $stmt = $db->prepare($query);
+        $result = $stmt->execute($query_params);
+    } catch (PDOException $ex) {
+        $response["success"] = 0;
+        $response["message"] = "Database Error1. Please Try Again!";
+        die(json_encode($response));
+    }
+
+    $row = $stmt->fetch();
+    if ($row) {
+        $response["created_at"] = $row['created_at'];
     }
 
     //If we have made it this far without dying, we have successfully added
@@ -116,6 +137,9 @@ if (!empty($_POST)) {
         <br/><br/>
         Password:<br/>
         <input type="password" name="password" value=""/>
+        <br/><br/>
+        Email:<br/>
+        <input type="email" name="email" value=""/>
         <br/><br/>
         <input type="submit" value="Register New User"/>
     </form>
