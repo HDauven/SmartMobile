@@ -3,12 +3,13 @@ package grapp.com.grapp;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,16 +34,18 @@ public class GroupsFragment extends Fragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Start new fragment and pass the group name using a bundle.
-                Toast.makeText(view.getContext(), String.valueOf(position), Toast.LENGTH_SHORT).show();
-                // GroupFragment swapFragment = new GroupFragment();
-                // Bundle arguments = new Bundle();
-                // arguments.putInt(GroupFragment.ARG_POSITION, position);
-                // swapFragment.setArguments(args);
-                // getFragmentManager().beginTransaction().replace()
+                // Start new fragment and pass the selected group using a bundle.
+                Bundle arguments = new Bundle();
+                arguments.putInt("position", position);
+                Fragment swapFragment = new GroupFragment();
+                swapFragment.setArguments(arguments);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.containerView, swapFragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
             }
         });
-
         return view;
     }
 
