@@ -39,16 +39,16 @@ public class ContactsAdapter extends ArrayAdapter<GrappContact> {
 
         View nameView = convertView;
 
-        if(nameView == null) {
-            LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            nameView  = inflater.inflate(R.layout.contact_list_item, null);
+        if (nameView == null) {
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            nameView = inflater.inflate(R.layout.contact_list_item, null);
         }
 
         TextView name = (TextView) nameView.findViewById(R.id.contact_name);
         name.setText(requestedContact.Name);
 
         TextView distance = (TextView) nameView.findViewById(R.id.contact_distance);
-        distance.setText(String.format("%.1f km", (requestedContact.Distance/1000)));
+        distance.setText(String.format("%.1f km", (requestedContact.Distance / 1000)));
 
         return nameView;
     }
