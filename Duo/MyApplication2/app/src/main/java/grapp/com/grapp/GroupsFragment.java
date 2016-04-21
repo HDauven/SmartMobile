@@ -6,7 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +30,18 @@ public class GroupsFragment extends Fragment {
         List<GrappGroup> allItems = getAllItemObject();
         GroupsAdapter groupsAdapter = new GroupsAdapter(this.getContext(), allItems);
         gridView.setAdapter(groupsAdapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Start new fragment and pass the group name using a bundle.
+                Toast.makeText(view.getContext(), String.valueOf(position), Toast.LENGTH_SHORT).show();
+                // GroupFragment swapFragment = new GroupFragment();
+                // Bundle arguments = new Bundle();
+                // arguments.putInt(GroupFragment.ARG_POSITION, position);
+                // swapFragment.setArguments(args);
+                // getFragmentManager().beginTransaction().replace()
+            }
+        });
 
         return view;
     }
