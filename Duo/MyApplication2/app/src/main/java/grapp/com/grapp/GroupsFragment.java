@@ -11,6 +11,8 @@ import android.widget.GridView;
 import java.util.ArrayList;
 import java.util.List;
 
+import grapp.com.grapp.model.GrappGroup;
+
 /**
  * Created by Hein on 4/11/2016.
  */
