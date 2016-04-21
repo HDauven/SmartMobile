@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import grapp.com.grapp.model.GrappNotification;
+
 /**
  * Created by Hein on 4/11/2016.
  */
