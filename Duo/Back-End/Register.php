@@ -68,16 +68,22 @@ if (!empty($_POST)) {
         die(json_encode($response));
     }
 
+    // Encrypt password
+    $salt = sha1(rand());
+    $salt = substr($salt, 0, 10);
+    $encrypted_password = base64_encode(sha1($_POST['password'] . $salt, true) . $salt);
+
     //If we have made it here without dying, then we are in the clear to
     //create a new user.  Let's setup our new query to create a user.
     //Again, to protect against sql injects, user tokens such as :user and :pass
-    $query = "INSERT INTO users ( username, password, email, created_at ) VALUES ( :user, :pass, :email, NOW())";
+    $query = "INSERT INTO users ( username, password, email, created_at, salt ) VALUES ( :user, :pass, :email, NOW(), :salt)";
 
     //Again, we need to update our tokens with the actual data:
     $query_params = array(
         ':user' => $_POST['username'],
-        ':pass' => $_POST['password'],
-        ':email' => $_POST['email']
+        ':pass' => $encrypted_password,
+        ':email' => $_POST['email'],
+        ':salt' => $salt
     );
 
     //time to run our query, and create the user
@@ -126,8 +132,6 @@ if (!empty($_POST)) {
     //for a php webservice you could do a simple redirect and die.
     //header("Location: login.php");
     //die("Redirecting to login.php");
-
-
 } else {
     ?>
     <h1>Register</h1>
