@@ -1,15 +1,23 @@
 package grapp.com.grapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.HashMap;
 
@@ -25,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
 
     private SessionManager sessionManager;
     private SQLiteHandler internalDatabase;
+
+    private MenuItem activeMenuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +99,31 @@ public class MainActivity extends AppCompatActivity {
                 R.string.app_name, R.string.app_name);
         mDrawerLayout.addDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
+
+        // Get the Header
+        View header = mNavigationView.getHeaderView(0);
+
+        // Get the navigation drawers header values
+        TextView tvUsername = (TextView) header.findViewById(R.id.header_username);
+        TextView tvEmail = (TextView) header.findViewById(R.id.header_email);
+        ImageView ivProfileImage = (ImageView) header.findViewById(R.id.header_profile_image);
+
+        // Set the headers values
+        tvUsername.setText(name);
+        tvEmail.setText(email);
+        // Set the user image in the header
+        int imageResourceId = this.getResources().getIdentifier(
+                "default_avatar", "drawable", this.getPackageName());
+        Bitmap src = BitmapFactory.decodeResource(this.getResources(), imageResourceId);
+        RoundedBitmapDrawable drawable = RoundedBitmapDrawableFactory.create(this.getResources(), src);
+        drawable.setCircular(true);
+        ivProfileImage.setImageDrawable(drawable);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState, PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
+
     }
 
     private void logoutUser() {

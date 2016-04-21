@@ -2,12 +2,12 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="190dp"
+    android:layout_height="200dp"
     android:orientation="vertical"
     android:background="@drawable/background_material">
 
     <ImageView
-        android:id="@+id/profile_image"
+        android:id="@+id/header_profile_image"
         android:layout_marginStart="24dp"
         android:layout_marginLeft="24dp"
         android:layout_centerVertical="true"
@@ -19,6 +19,7 @@
         android:layout_height="76dp"/>
 
     <TextView
+        android:id="@+id/header_username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Username"
@@ -27,22 +28,21 @@
         android:textStyle="bold"
         android:gravity="left"
         android:paddingBottom="4dp"
-        android:id="@+id/username"
-        android:layout_above="@+id/email"
-        android:layout_alignLeft="@+id/profile_image"
-        android:layout_alignStart="@+id/profile_image" />
+        android:layout_above="@+id/header_email"
+        android:layout_alignLeft="@+id/header_profile_image"
+        android:layout_alignStart="@+id/header_profile_image" />
 
     <TextView
+        android:id="@+id/header_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="User@Email.com"
-        android:id="@+id/email"
         android:gravity="left"
         android:layout_marginBottom="8dp"
         android:textSize="14sp"
         android:textColor="#fff"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/username"
-        android:layout_alignStart="@+id/username" />
+        android:layout_alignLeft="@+id/header_username"
+        android:layout_alignStart="@+id/header_username" />
 
 </RelativeLayout>
