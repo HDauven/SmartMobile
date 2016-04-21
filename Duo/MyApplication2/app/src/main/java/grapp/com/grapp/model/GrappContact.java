@@ -14,8 +14,7 @@ public class GrappContact {
     public float Distance;
     public Random r;
 
-    public GrappContact(String name)
-    {
+    public GrappContact(String name) {
         Name = name;
         r = new Random();
         location = new Location("");
