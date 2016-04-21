@@ -60,16 +60,19 @@ public class MainActivity extends AppCompatActivity {
 
                 if (menuItem.getItemId() == R.id.nav_item_home) {
                     FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+                    fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.replace(R.id.containerView, new TabFragment()).commit();
                 }
 
                 if (menuItem.getItemId() == R.id.nav_item_contacts) {
                     FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+                    fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.replace(R.id.containerView, new ContactsFragment()).commit();
                 }
 
                 if (menuItem.getItemId() == R.id.nav_item_profile) {
                     FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+                    fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.replace(R.id.containerView, new ProfileFragment()).commit();
                 }
 
