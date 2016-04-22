@@ -23,7 +23,7 @@ public class GroupFragment extends Fragment {
         if (savedInstanceState != null) {
             currentPosition = savedInstanceState.getInt("position");
         }
-        View view = inflater.inflate(R.layout.profile_layout, container, false);
+        View view = inflater.inflate(R.layout.group_layout, container, false);
         Toast.makeText(view.getContext(), "Selected item: " + String.valueOf(currentPosition), Toast.LENGTH_SHORT).show();
 
         return view;
