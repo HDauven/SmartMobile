@@ -38,7 +38,7 @@ public class NotificationsFragment extends Fragment {
                 // Start new fragment and pass the selected notification using a bundle.
                 Bundle arguments = new Bundle();
                 arguments.putInt("position", position);
-                Fragment swapFragment = new GroupFragment();
+                Fragment swapFragment = new ProfileFragment();
                 swapFragment.setArguments(arguments);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
