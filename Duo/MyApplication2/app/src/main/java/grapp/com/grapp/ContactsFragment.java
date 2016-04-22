@@ -44,7 +44,7 @@ import grapp.com.grapp.model.GrappContact;
 /**
  * Created by Hein on 4/11/2016.
  */
-public class ContactsFragment extends Fragment  {
+public class ContactsFragment extends Fragment {
 
     private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 1;
     private LocationManager locationManager;
@@ -73,8 +73,7 @@ public class ContactsFragment extends Fragment  {
 
         // Ask permission if it's not set for location
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            if(ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION))
-            {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION)) {
 
             } else {
                 ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, MY_PERMISSIONS_REQUEST_READ_CONTACTS);
@@ -97,11 +96,10 @@ public class ContactsFragment extends Fragment  {
 
         // Get contact names and put them in a list
         ContentResolver cr = getContext().getContentResolver();
-        Cursor phones = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null,null,null, null);
+        Cursor phones = cr.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null, null, null);
 
         // Move cursor through datatable with contacts
-        while (phones.moveToNext())
-        {
+        while (phones.moveToNext()) {
             String name = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
             contacts.add(new GrappContact(name));
         }
@@ -114,8 +112,7 @@ public class ContactsFragment extends Fragment  {
     }
 
     @Override
-    public void onPause()
-    {
+    public void onPause() {
         // Ask for permission and turn location updates off
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
@@ -125,8 +122,7 @@ public class ContactsFragment extends Fragment  {
     }
 
     @Override
-    public void onResume()
-    {
+    public void onResume() {
         // Start location listener
         setupLocationService();
         super.onResume();
@@ -137,8 +133,7 @@ public class ContactsFragment extends Fragment  {
         locationListener = new LocationListener() {
             public void onLocationChanged(Location location) {
                 // When location changes calculate distance between you and contacts
-                for (int i = 0; i < adapter.contacts.size(); i++)
-                {
+                for (int i = 0; i < adapter.contacts.size(); i++) {
                     adapter.contacts.get(i).Distance = Math.round(location.distanceTo(adapter.contacts.get(i).location));
                 }
             }
@@ -186,5 +181,5 @@ public class ContactsFragment extends Fragment  {
     }
 
 
-    }
+}
 
