@@ -50,8 +50,6 @@ public class GroupFragment extends Fragment {
     }
 
     private List<GrappModule> getAllItemObject() {
-        GrappModule grappModule = null;
-
         List<GrappModule> modules = new ArrayList<>();
         modules.add(new GrappModule("Chat", "chat"));
         modules.add(new GrappModule("Calendar", "calendar"));

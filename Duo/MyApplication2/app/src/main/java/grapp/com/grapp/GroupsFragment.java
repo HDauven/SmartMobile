@@ -50,8 +50,6 @@ public class GroupsFragment extends Fragment {
     }
 
     private List<GrappGroup> getAllItemObject() {
-        GrappGroup grappGroup = null;
-
         List<GrappGroup> groups = new ArrayList<>();
         groups.add(new GrappGroup("Grapp Project", "one"));
         groups.add(new GrappGroup("Vacation", "two"));
