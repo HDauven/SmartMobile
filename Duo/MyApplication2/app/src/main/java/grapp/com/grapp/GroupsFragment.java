@@ -37,6 +37,8 @@ public class GroupsFragment extends Fragment {
                 // Start new fragment and pass the selected group using a bundle.
                 Bundle arguments = new Bundle();
                 arguments.putInt("position", position);
+                arguments.putString("title", getAllItemObject().get(position).getGroupName());
+                arguments.putString("subtitle", getAllItemObject().get(position).getGroupDescription());
                 Fragment swapFragment = new GroupFragment();
                 swapFragment.setArguments(arguments);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -51,25 +53,25 @@ public class GroupsFragment extends Fragment {
 
     private List<GrappGroup> getAllItemObject() {
         List<GrappGroup> groups = new ArrayList<>();
+        groups.add(new GrappGroup("Grapp Project", "RIP Whatsapp", "one"));
+        groups.add(new GrappGroup("Vacation", "Swiss Vacation", "two"));
+        groups.add(new GrappGroup("Maatwerk", "5th time maatwerk", "three"));
+        groups.add(new GrappGroup("S42", "S42 class group", "four"));
+        groups.add(new GrappGroup("Dream Team", "The ultimate project group", "five"));
+        groups.add(new GrappGroup("Family", "Dauven family chat", "six"));
+        groups.add(new GrappGroup("Badminton", "seven"));
+        groups.add(new GrappGroup("Proftaak", "eight"));
         groups.add(new GrappGroup("Grapp Project", "one"));
-        groups.add(new GrappGroup("Vacation", "two"));
-        groups.add(new GrappGroup("Maatwerk", "three"));
+        groups.add(new GrappGroup("Vacation", "Thailand Vacation", "two"));
+        groups.add(new GrappGroup("Maatwerk", "Another maatwerk group :(", "three"));
         groups.add(new GrappGroup("S42", "four"));
         groups.add(new GrappGroup("Dream Team", "five"));
         groups.add(new GrappGroup("Family", "six"));
         groups.add(new GrappGroup("Badminton", "seven"));
         groups.add(new GrappGroup("Proftaak", "eight"));
         groups.add(new GrappGroup("Grapp Project", "one"));
-        groups.add(new GrappGroup("Vacation", "two"));
-        groups.add(new GrappGroup("Maatwerk", "three"));
-        groups.add(new GrappGroup("S42", "four"));
-        groups.add(new GrappGroup("Dream Team", "five"));
-        groups.add(new GrappGroup("Family", "six"));
-        groups.add(new GrappGroup("Badminton", "seven"));
-        groups.add(new GrappGroup("Proftaak", "eight"));
-        groups.add(new GrappGroup("Grapp Project", "one"));
-        groups.add(new GrappGroup("Vacation", "two"));
-        groups.add(new GrappGroup("Maatwerk", "three"));
+        groups.add(new GrappGroup("Vacation", "USA Vacation", "two"));
+        groups.add(new GrappGroup("Maatwerk", "Why did this happen?", "three"));
         groups.add(new GrappGroup("S42", "four"));
         groups.add(new GrappGroup("Dream Team", "five"));
         groups.add(new GrappGroup("Family", "six"));

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ public class GroupFragment extends Fragment {
 
     final static String ARG_POSITION = "position";
     private int currentPosition = -1;
+    private String groupTitle;
+    private String groupSubtitle;
 
     @Nullable
     @Override
@@ -29,6 +32,8 @@ public class GroupFragment extends Fragment {
         savedInstanceState = getArguments();
         if (savedInstanceState != null) {
             currentPosition = savedInstanceState.getInt("position");
+            groupTitle = savedInstanceState.getString("title");
+            groupSubtitle = savedInstanceState.getString("subtitle");
         }
         View view = inflater.inflate(R.layout.group_layout, container, false);
 
@@ -45,6 +50,12 @@ public class GroupFragment extends Fragment {
             }
         });
         Toast.makeText(view.getContext(), "Selected item: " + String.valueOf(currentPosition), Toast.LENGTH_SHORT).show();
+
+        TextView tvGroupName = (TextView) view.findViewById(R.id.group_title);
+        tvGroupName.setText(groupTitle);
+
+        TextView tvGroupSubtitle = (TextView) view.findViewById(R.id.group_title_sub);
+        tvGroupSubtitle.setText(groupSubtitle);
 
         return view;
     }
