@@ -6,10 +6,18 @@ package grapp.com.grapp.model;
 public class GrappGroup {
 
     private String groupName;
+    private String groupDescription;
     private String imageResource;
 
     public GrappGroup(String groupName, String imageResource) {
         this.groupName = groupName;
+        this.groupDescription = "";
+        this.imageResource = imageResource;
+    }
+
+    public GrappGroup(String groupName, String groupDescription, String imageResource) {
+        this.groupName = groupName;
+        this.groupDescription = groupDescription;
         this.imageResource = imageResource;
     }
 
@@ -27,5 +35,13 @@ public class GrappGroup {
 
     public void setImageResource(String imageResource) {
         this.imageResource = imageResource;
+    }
+
+    public String getGroupDescription() {
+        return groupDescription;
+    }
+
+    public void setGroupDescription(String groupDescription) {
+        this.groupDescription = groupDescription;
     }
 }
